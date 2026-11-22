@@ -1,0 +1,128 @@
+{
+  "sampleDate": "2026-11-19",
+  "source": "Electricity Authority (New Zealand)",
+  "attribution": "www.emi.ea.govt.nz provided by the Electricity Authority (New Zealand)",
+  "licence": "CC BY 4.0 International",
+  "rows": 144,
+  "nodes": [
+    {
+      "code": "OTA2201",
+      "label": "Otahuhu",
+      "area": "Auckland",
+      "island": "NI"
+    },
+    {
+      "code": "HAY2201",
+      "label": "Haywards",
+      "area": "Wellington",
+      "island": "NI"
+    },
+    {
+      "code": "ISL2201",
+      "label": "Islington",
+      "area": "Christchurch",
+      "island": "SI"
+    }
+  ],
+  "priceMinNzdPerMwh": 2.83,
+  "priceMaxNzdPerMwh": 184.66,
+  "periodsPerDay": 48,
+  "series": [
+    {
+      "period": 1,
+      "price": 30.59
+    },
+    {
+      "period": 3,
+      "price": 29.81
+    },
+    {
+      "period": 5,
+      "price": 29.43
+    },
+    {
+      "period": 7,
+      "price": 12.69
+    },
+    {
+      "period": 9,
+      "price": 23.32
+    },
+    {
+      "period": 11,
+      "price": 33.46
+    },
+    {
+      "period": 13,
+      "price": 124.44
+    },
+    {
+      "period": 15,
+      "price": 56.51
+    },
+    {
+      "period": 17,
+      "price": 51.57
+    },
+    {
+      "period": 19,
+      "price": 66.73
+    },
+    {
+      "period": 21,
+      "price": 34.84
+    },
+    {
+      "period": 23,
+      "price": 99.23
+    },
+    {
+      "period": 25,
+      "price": 73.94
+    },
+    {
+      "period": 27,
+      "price": 60.01
+    },
+    {
+      "period": 29,
+      "price": 56.21
+    },
+    {
+      "period": 31,
+      "price": 77.66
+    },
+    {
+      "period": 33,
+      "price": 184.66
+    },
+    {
+      "period": 35,
+      "price": 117.55
+    },
+    {
+      "period": 37,
+      "price": 103.88
+    },
+    {
+      "period": 39,
+      "price": 132.63
+    },
+    {
+      "period": 41,
+      "price": 119.39
+    },
+    {
+      "period": 43,
+      "price": 157.29
+    },
+    {
+      "period": 45,
+      "price": 99.59
+    },
+    {
+      "period": 47,
+      "price": 83.89
+    }
+  ]
+}
