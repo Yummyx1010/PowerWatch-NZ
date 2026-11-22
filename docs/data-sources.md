@@ -22,13 +22,16 @@ Verified live file sizes: one daily final price file ≈ 330 KB; one monthly fin
 
 - **Unit:** NZ dollars per megawatt-hour (`$/MWh`), from the `DollarsPerMegawattHour` column and
   the `$/MWh` column in the single-node report.
-- **Time base:** `TradingDate` plus `TradingPeriod` 1–48. Each period is 30 minutes; period 1
-  starts at midnight local time. The daily export has **no explicit timestamp or timezone
-  column** — New Zealand local time (NZST/NZDT) is implied. Daylight-saving behaviour must be
-  checked explicitly in M1 before any time-series joins.
+- **Time base:** `TradingDate` plus a 30-minute `TradingPeriod`. The daily export has no explicit
+  timestamp or timezone column. **M1 verified the official DST rule**: normal days have 48
+  periods, the last Sunday of September has **46** periods (02:00–03:00 skipped), and the first
+  Sunday of April has **50** periods (02:00–03:00 repeated). See
+  `https://forum.emi.ea.govt.nz/thread/daylight-saving-time-and-trading-periods/`. M1 verified the
+  counts against real EMI single-node reports for 2024 and 2025 transition days.
 - **Price types:** `interim` (time-weighted average of dispatch prices during a period),
-  `final` (declared after the pricing-error window), and `provisional` in older archives. M0
-  uses final prices for history and keeps one interim sample only to document the difference.
+  `final` (declared after the pricing-error window), and `provisional` in older archives. M1 keeps
+  both Final and Interim rows, labelled in `price_status` / `price_type`, and never mixes them
+  silently.
 - **Nodes:** `PointOfConnection` / POC codes (e.g. `OTA2201`). A price is nodal, not a national
   average. There is no official "North Island price" or "South Island price" in this dataset.
 
@@ -47,11 +50,11 @@ must not present them as official island aggregates.
 
 ## 3. Historical scope (~3 years)
 
-The monthly archive supports a three-year backfill (roughly `202311`–`202610`) plus final daily
-files for recent dates and interim files for the newest days. M0 downloads **only small samples**;
-the full backfill belongs to M1 and should be incremental, with a manifest recording source URL,
-download date and checksum per file. Exclude `202512_FinalEnergyPrices_incomplete.csv` until the
-Authority republishes a complete December 2025 file.
+M1 downloaded 36 monthly files (`202311`–`202610`), 19 final daily files (`20261101`–`20261119`)
+and 3 interim daily files (`20261120`–`20261122`). `data/manifest.json` records the exact URL,
+coverage period, price status, byte size, SHA-256, source `Last-Modified` header and processing
+status of every file. `202512_FinalEnergyPrices_incomplete.csv` is recorded with issue
+`incomplete_monthly_file` and is excluded from processing, leaving a documented 31-day gap.
 
 ## 4. Licensing and attribution
 

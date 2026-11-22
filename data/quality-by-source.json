@@ -1,0 +1,2138 @@
+{
+  "daily:20261101": {
+    "dateEnd": "2026-11-01",
+    "dateStart": "2026-11-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 37,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 124.03,
+    "priceMin": -1.07,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261101",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 4
+  },
+  "daily:20261102": {
+    "dateEnd": "2026-11-02",
+    "dateStart": "2026-11-02",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 82.9,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261102",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261103": {
+    "dateEnd": "2026-11-03",
+    "dateStart": "2026-11-03",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 251.36,
+    "priceMin": 3.71,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261103",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261104": {
+    "dateEnd": "2026-11-04",
+    "dateStart": "2026-11-04",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 329.52,
+    "priceMin": 8.73,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261104",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261105": {
+    "dateEnd": "2026-11-05",
+    "dateStart": "2026-11-05",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 260.19,
+    "priceMin": 9.18,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261105",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261106": {
+    "dateEnd": "2026-11-06",
+    "dateStart": "2026-11-06",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 197.11,
+    "priceMin": 8.06,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261106",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261107": {
+    "dateEnd": "2026-11-07",
+    "dateStart": "2026-11-07",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 229.71,
+    "priceMin": 18.26,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261107",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261108": {
+    "dateEnd": "2026-11-08",
+    "dateStart": "2026-11-08",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 204.36,
+    "priceMin": 0.39,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261108",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261109": {
+    "dateEnd": "2026-11-09",
+    "dateStart": "2026-11-09",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 350.97,
+    "priceMin": 0.02,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261109",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261110": {
+    "dateEnd": "2026-11-10",
+    "dateStart": "2026-11-10",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 220.67,
+    "priceMin": 0.02,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261110",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261111": {
+    "dateEnd": "2026-11-11",
+    "dateStart": "2026-11-11",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 26.86,
+    "priceMin": 0.02,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261111",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261112": {
+    "dateEnd": "2026-11-12",
+    "dateStart": "2026-11-12",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 71.68,
+    "priceMin": 0.02,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261112",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261113": {
+    "dateEnd": "2026-11-13",
+    "dateStart": "2026-11-13",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 134.48,
+    "priceMin": 0.02,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261113",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261114": {
+    "dateEnd": "2026-11-14",
+    "dateStart": "2026-11-14",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 67.1,
+    "priceMin": 0.38,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261114",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261115": {
+    "dateEnd": "2026-11-15",
+    "dateStart": "2026-11-15",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 41.52,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261115",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261116": {
+    "dateEnd": "2026-11-16",
+    "dateStart": "2026-11-16",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 67.39,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261116",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261117": {
+    "dateEnd": "2026-11-17",
+    "dateStart": "2026-11-17",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 148.72,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261117",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261118": {
+    "dateEnd": "2026-11-18",
+    "dateStart": "2026-11-18",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 222.67,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261118",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261119": {
+    "dateEnd": "2026-11-19",
+    "dateStart": "2026-11-19",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 188.73,
+    "priceMin": 2.55,
+    "priceStatusCounts": {
+      "Final": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261119",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261120": {
+    "dateEnd": "2026-11-20",
+    "dateStart": "2026-11-20",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 144.57,
+    "priceMin": 3.78,
+    "priceStatusCounts": {
+      "Interim": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261120",
+    "status": "Interim",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261121": {
+    "dateEnd": "2026-11-21",
+    "dateStart": "2026-11-21",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 121.56,
+    "priceMin": 19.08,
+    "priceStatusCounts": {
+      "Interim": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261121",
+    "status": "Interim",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "daily:20261122": {
+    "dateEnd": "2026-11-22",
+    "dateStart": "2026-11-22",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 144,
+      "nsp_table": 10656,
+      "unmatched": 1008
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 1
+    },
+    "priceMax": 133.37,
+    "priceMin": 21.22,
+    "priceStatusCounts": {
+      "Interim": 11808
+    },
+    "rows": 11808,
+    "sourceKey": "daily:20261122",
+    "status": "Interim",
+    "timeTagDistribution": {
+      "normal_nzdt": 11808
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202311": {
+    "dateEnd": "2023-11-30",
+    "dateStart": "2023-11-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 308160,
+      "unmatched": 34560
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 701.56,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 347040
+    },
+    "rows": 347040,
+    "sourceKey": "monthly:202311",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 347040
+    },
+    "zeroPrices": 2
+  },
+  "monthly:202312": {
+    "dateEnd": "2023-12-31",
+    "dateStart": "2023-12-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 318432,
+      "unmatched": 34824
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 624.59,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 357720
+    },
+    "rows": 357720,
+    "sourceKey": "monthly:202312",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 357720
+    },
+    "zeroPrices": 402
+  },
+  "monthly:202401": {
+    "dateEnd": "2024-01-31",
+    "dateStart": "2024-01-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 318432,
+      "unmatched": 34224
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 240,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 926.55,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 357120
+    },
+    "rows": 357120,
+    "sourceKey": "monthly:202401",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 357120
+    },
+    "zeroPrices": 3
+  },
+  "monthly:202402": {
+    "dateEnd": "2024-02-29",
+    "dateStart": "2024-02-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4176,
+      "nsp_table": 297888,
+      "unmatched": 32016
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 240,
+    "periodCountDistribution": {
+      "48": 29
+    },
+    "priceMax": 1508.5,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 334080
+    },
+    "rows": 334080,
+    "sourceKey": "monthly:202402",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 334080
+    },
+    "zeroPrices": 120
+  },
+  "monthly:202403": {
+    "dateEnd": "2024-03-31",
+    "dateStart": "2024-03-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 318432,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 239,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 668.99,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 355632
+    },
+    "rows": 355632,
+    "sourceKey": "monthly:202403",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 355632
+    },
+    "zeroPrices": 4
+  },
+  "monthly:202404": {
+    "dateEnd": "2024-04-30",
+    "dateStart": "2024-04-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4326,
+      "nsp_table": 308890,
+      "unmatched": 31724
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 240,
+    "periodCountDistribution": {
+      "48": 29,
+      "50": 1
+    },
+    "priceMax": 3255.88,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 344940
+    },
+    "rows": 344940,
+    "sourceKey": "monthly:202404",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_end_after_repeat": 10038,
+      "dst_end_first_pass": 1434,
+      "dst_end_second_pass": 478,
+      "normal_nzdt": 68832,
+      "normal_nzst": 264158
+    },
+    "zeroPrices": 114
+  },
+  "monthly:202405": {
+    "dateEnd": "2024-05-31",
+    "dateStart": "2024-05-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 319920,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 240,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 5400.27,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 357120
+    },
+    "rows": 357120,
+    "sourceKey": "monthly:202405",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 357120
+    },
+    "zeroPrices": 4
+  },
+  "monthly:202406": {
+    "dateEnd": "2024-06-30",
+    "dateStart": "2024-06-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 310896,
+      "unmatched": 31680
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 3318.77,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 346896
+    },
+    "rows": 346896,
+    "sourceKey": "monthly:202406",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 346896
+    },
+    "zeroPrices": 74
+  },
+  "monthly:202407": {
+    "dateEnd": "2024-07-31",
+    "dateStart": "2024-07-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 321408,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 2550.91,
+    "priceMin": 0.23,
+    "priceStatusCounts": {
+      "Final": 358608
+    },
+    "rows": 358608,
+    "sourceKey": "monthly:202407",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 358608
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202408": {
+    "dateEnd": "2024-08-31",
+    "dateStart": "2024-08-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 321408,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 8428.97,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 358608
+    },
+    "rows": 358608,
+    "sourceKey": "monthly:202408",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 358608
+    },
+    "zeroPrices": 1
+  },
+  "monthly:202409": {
+    "dateEnd": "2024-09-30",
+    "dateStart": "2024-09-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4314,
+      "nsp_table": 310608,
+      "unmatched": 31636
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "46": 1,
+      "48": 29
+    },
+    "priceMax": 4564.51,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 346558
+    },
+    "rows": 346558,
+    "sourceKey": "monthly:202409",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_start_after_gap": 10122,
+      "dst_start_before_gap": 964,
+      "normal_nzdt": 11568,
+      "normal_nzst": 323904
+    },
+    "zeroPrices": 400
+  },
+  "monthly:202410": {
+    "dateEnd": "2024-10-31",
+    "dateStart": "2024-10-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 321408,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 241,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 242.94,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 358608
+    },
+    "rows": 358608,
+    "sourceKey": "monthly:202410",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 358608
+    },
+    "zeroPrices": 35
+  },
+  "monthly:202411": {
+    "dateEnd": "2024-11-30",
+    "dateStart": "2024-11-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 311472,
+      "unmatched": 31680
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 14,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 313.72,
+    "priceMin": -0.82,
+    "priceStatusCounts": {
+      "Final": 347472
+    },
+    "rows": 347472,
+    "sourceKey": "monthly:202411",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 347472
+    },
+    "zeroPrices": 423
+  },
+  "monthly:202412": {
+    "dateEnd": "2024-12-31",
+    "dateStart": "2024-12-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 322896,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 162,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 5250.3,
+    "priceMin": -10.21,
+    "priceStatusCounts": {
+      "Final": 360096
+    },
+    "rows": 360096,
+    "sourceKey": "monthly:202412",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 360096
+    },
+    "zeroPrices": 7
+  },
+  "monthly:202501": {
+    "dateEnd": "2025-01-31",
+    "dateStart": "2025-01-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 322896,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 10,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 367.79,
+    "priceMin": -144.93,
+    "priceStatusCounts": {
+      "Final": 360096
+    },
+    "rows": 360096,
+    "sourceKey": "monthly:202501",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 360096
+    },
+    "zeroPrices": 202
+  },
+  "monthly:202502": {
+    "dateEnd": "2025-02-28",
+    "dateStart": "2025-02-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4032,
+      "nsp_table": 291648,
+      "unmatched": 29568
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 11,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 28
+    },
+    "priceMax": 2511.21,
+    "priceMin": -42.45,
+    "priceStatusCounts": {
+      "Final": 325248
+    },
+    "rows": 325248,
+    "sourceKey": "monthly:202502",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 325248
+    },
+    "zeroPrices": 519
+  },
+  "monthly:202503": {
+    "dateEnd": "2025-03-31",
+    "dateStart": "2025-03-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 322896,
+      "unmatched": 32736
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 2809.17,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 360096
+    },
+    "rows": 360096,
+    "sourceKey": "monthly:202503",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 360096
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202504": {
+    "dateEnd": "2025-04-30",
+    "dateStart": "2025-04-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4326,
+      "nsp_table": 312914,
+      "unmatched": 30760
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 29,
+      "50": 1
+    },
+    "priceMax": 535.19,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 348000
+    },
+    "rows": 348000,
+    "sourceKey": "monthly:202504",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_end_after_repeat": 10164,
+      "dst_end_first_pass": 1452,
+      "dst_end_second_pass": 484,
+      "normal_nzdt": 58080,
+      "normal_nzst": 277820
+    },
+    "zeroPrices": 3
+  },
+  "monthly:202505": {
+    "dateEnd": "2025-05-31",
+    "dateStart": "2025-05-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 323345,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 10425.32,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 359057
+    },
+    "rows": 359057,
+    "sourceKey": "monthly:202505",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 359057
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202506": {
+    "dateEnd": "2025-06-30",
+    "dateStart": "2025-06-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 313920,
+      "unmatched": 30240
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 440.09,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 348480
+    },
+    "rows": 348480,
+    "sourceKey": "monthly:202506",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 348480
+    },
+    "zeroPrices": 8
+  },
+  "monthly:202507": {
+    "dateEnd": "2025-07-31",
+    "dateStart": "2025-07-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 324384,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 2668.43,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 360096
+    },
+    "rows": 360096,
+    "sourceKey": "monthly:202507",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 360096
+    },
+    "zeroPrices": 5
+  },
+  "monthly:202508": {
+    "dateEnd": "2025-08-31",
+    "dateStart": "2025-08-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 324384,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 242,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 480.8,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 360096
+    },
+    "rows": 360096,
+    "sourceKey": "monthly:202508",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 360096
+    },
+    "zeroPrices": 4
+  },
+  "monthly:202509": {
+    "dateEnd": "2025-09-30",
+    "dateStart": "2025-09-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4314,
+      "nsp_table": 314586,
+      "unmatched": 30198
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 243,
+    "periodCountDistribution": {
+      "46": 1,
+      "48": 29
+    },
+    "priceMax": 390.65,
+    "priceMin": 0.01,
+    "priceStatusCounts": {
+      "Final": 349098
+    },
+    "rows": 349098,
+    "sourceKey": "monthly:202509",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_start_after_gap": 10206,
+      "dst_start_before_gap": 972,
+      "normal_nzdt": 23328,
+      "normal_nzst": 314592
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202510": {
+    "dateEnd": "2025-10-31",
+    "dateStart": "2025-10-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 325872,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 12,
+    "nodeCount": 243,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 2000.07,
+    "priceMin": -2.69,
+    "priceStatusCounts": {
+      "Final": 361584
+    },
+    "rows": 361584,
+    "sourceKey": "monthly:202510",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 361584
+    },
+    "zeroPrices": 45
+  },
+  "monthly:202511": {
+    "dateEnd": "2025-11-30",
+    "dateStart": "2025-11-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 315360,
+      "unmatched": 30240
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 12,
+    "nodeCount": 243,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 395.95,
+    "priceMin": -6.21,
+    "priceStatusCounts": {
+      "Final": 349920
+    },
+    "rows": 349920,
+    "sourceKey": "monthly:202511",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 349920
+    },
+    "zeroPrices": 1
+  },
+  "monthly:202601": {
+    "dateEnd": "2026-01-31",
+    "dateStart": "2026-01-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 325872,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 243,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 240.56,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 361584
+    },
+    "rows": 361584,
+    "sourceKey": "monthly:202601",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 361584
+    },
+    "zeroPrices": 70
+  },
+  "monthly:202602": {
+    "dateEnd": "2026-02-28",
+    "dateStart": "2026-02-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4032,
+      "nsp_table": 294795,
+      "unmatched": 28224
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 2,
+    "nodeCount": 244,
+    "periodCountDistribution": {
+      "48": 28
+    },
+    "priceMax": 339.6,
+    "priceMin": -0.18,
+    "priceStatusCounts": {
+      "Final": 327051
+    },
+    "rows": 327051,
+    "sourceKey": "monthly:202602",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 327051
+    },
+    "zeroPrices": 55
+  },
+  "monthly:202603": {
+    "dateEnd": "2026-03-31",
+    "dateStart": "2026-03-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 327360,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 244,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 3936.14,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 363072
+    },
+    "rows": 363072,
+    "sourceKey": "monthly:202603",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 363072
+    },
+    "zeroPrices": 15
+  },
+  "monthly:202604": {
+    "dateEnd": "2026-04-30",
+    "dateStart": "2026-04-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4326,
+      "nsp_table": 318323,
+      "unmatched": 30282
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 2,
+    "nodeCount": 245,
+    "periodCountDistribution": {
+      "48": 29,
+      "50": 1
+    },
+    "priceMax": 624.88,
+    "priceMin": -2.66,
+    "priceStatusCounts": {
+      "Final": 352931
+    },
+    "rows": 352931,
+    "sourceKey": "monthly:202604",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_end_after_repeat": 10248,
+      "dst_end_first_pass": 1464,
+      "dst_end_second_pass": 488,
+      "normal_nzdt": 46848,
+      "normal_nzst": 293883
+    },
+    "zeroPrices": 0
+  },
+  "monthly:202605": {
+    "dateEnd": "2026-05-31",
+    "dateStart": "2026-05-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 328848,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 245,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 621.37,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 364560
+    },
+    "rows": 364560,
+    "sourceKey": "monthly:202605",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 364560
+    },
+    "zeroPrices": 205
+  },
+  "monthly:202606": {
+    "dateEnd": "2026-06-30",
+    "dateStart": "2026-06-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 1,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4320,
+      "nsp_table": 318555,
+      "unmatched": 30240
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 1,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 30
+    },
+    "priceMax": 506.28,
+    "priceMin": -15.21,
+    "priceStatusCounts": {
+      "Final": 353115
+    },
+    "rows": 353115,
+    "sourceKey": "monthly:202606",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 353115
+    },
+    "zeroPrices": 36
+  },
+  "monthly:202607": {
+    "dateEnd": "2026-07-31",
+    "dateStart": "2026-07-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 330336,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 3557.49,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 366048
+    },
+    "rows": 366048,
+    "sourceKey": "monthly:202607",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 366048
+    },
+    "zeroPrices": 207
+  },
+  "monthly:202608": {
+    "dateEnd": "2026-08-31",
+    "dateStart": "2026-08-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 330336,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 4644.05,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 366048
+    },
+    "rows": 366048,
+    "sourceKey": "monthly:202608",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzst": 366048
+    },
+    "zeroPrices": 10
+  },
+  "monthly:202609": {
+    "dateEnd": "2026-09-30",
+    "dateStart": "2026-09-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4314,
+      "nsp_table": 319236,
+      "unmatched": 30198
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 9,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "46": 1,
+      "48": 29
+    },
+    "priceMax": 308.97,
+    "priceMin": -1.02,
+    "priceStatusCounts": {
+      "Final": 353748
+    },
+    "rows": 353748,
+    "sourceKey": "monthly:202609",
+    "status": "Final",
+    "timeTagDistribution": {
+      "dst_start_after_gap": 10332,
+      "dst_start_before_gap": 984,
+      "normal_nzdt": 35424,
+      "normal_nzst": 307008
+    },
+    "zeroPrices": 1
+  },
+  "monthly:202610": {
+    "dateEnd": "2026-10-31",
+    "dateStart": "2026-10-01",
+    "duplicateKeys": 0,
+    "incompleteNodeDays": 0,
+    "issue": null,
+    "mappingStatusCounts": {
+      "manual_override": 4464,
+      "nsp_table": 330336,
+      "unmatched": 31248
+    },
+    "missingByColumn": {
+      "node": 0,
+      "period_start_utc": 0,
+      "price_nzd_per_mwh": 0,
+      "price_status": 0,
+      "trading_date": 0,
+      "trading_period": 0
+    },
+    "negativePrices": 0,
+    "nodeCount": 246,
+    "periodCountDistribution": {
+      "48": 31
+    },
+    "priceMax": 337.42,
+    "priceMin": 0.0,
+    "priceStatusCounts": {
+      "Final": 366048
+    },
+    "rows": 366048,
+    "sourceKey": "monthly:202610",
+    "status": "Final",
+    "timeTagDistribution": {
+      "normal_nzdt": 366048
+    },
+    "zeroPrices": 3
+  }
+}

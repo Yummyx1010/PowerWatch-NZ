@@ -26,7 +26,7 @@ def _find_report_header(path: Path) -> int | None:
     return None
 
 
-def read_price_csv(path: Path) -> pd.DataFrame:
+def read_price_csv(path: Path, *, include_raw: bool = False) -> pd.DataFrame:
     """Read either official price format into one canonical schema.
 
     Supports the daily all-node export (no preamble) and the single-node
@@ -34,12 +34,13 @@ def read_price_csv(path: Path) -> pd.DataFrame:
     """
     path = Path(path)
     header = _find_report_header(path)
+    raw_price_column = "$/MWh" if header is not None else "DollarsPerMegawattHour"
     if header is not None:
         raw = pd.read_csv(path, skiprows=header, dtype=str)
-        raw = raw.rename(columns=REPORT_COLUMNS)
     else:
         raw = pd.read_csv(path, dtype=str)
-        raw = raw.rename(columns=PRICE_COLUMNS)
+    raw_price = raw.get(raw_price_column)
+    raw = raw.rename(columns=REPORT_COLUMNS if header is not None else PRICE_COLUMNS)
 
     missing = set(PRICE_COLUMNS.values()) - set(raw.columns)
     if missing:
@@ -58,7 +59,10 @@ def read_price_csv(path: Path) -> pd.DataFrame:
         frame["price_status"] = status.astype("string").str.strip() if status is not None else pd.NA
     else:
         frame["price_status"] = pd.NA
-    return frame[CANONICAL_COLUMNS]
+    columns = CANONICAL_COLUMNS + (["raw_price"] if include_raw else [])
+    if include_raw:
+        frame["raw_price"] = raw_price.astype("string") if raw_price is not None else pd.NA
+    return frame[columns]
 
 
 def profile_price_frame(frame: pd.DataFrame) -> dict[str, object]:

@@ -1,0 +1,21 @@
+{
+  "coverage": {
+    "finalDays": 1084,
+    "firstFinalDate": "2023-11-01",
+    "gapDays": 31,
+    "gaps": [
+      {
+        "end": "2025-12-31",
+        "start": "2025-12-01"
+      }
+    ],
+    "interimDays": 3,
+    "lastFinalDate": "2026-11-19",
+    "lastInterimDate": "2026-11-22",
+    "requestedEnd": "2026-11-22",
+    "requestedStart": "2023-11-01"
+  },
+  "dataVersion": "2026-11-23",
+  "schemaVersion": "1.0",
+  "sourceCount": 58
+}

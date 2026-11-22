@@ -1,0 +1,675 @@
+{
+  "nodes": [
+    "OTA2201",
+    "HAY2201",
+    "ISL2201"
+  ],
+  "points": [
+    {
+      "meanPrice": 134.21,
+      "month": "2023-11",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 135.46,
+      "month": "2023-11",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 152.47,
+      "month": "2023-11",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 170.24,
+      "month": "2023-12",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 178.6,
+      "month": "2023-12",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 182.9,
+      "month": "2023-12",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 185.48,
+      "month": "2024-01",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 193.94,
+      "month": "2024-01",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 202.58,
+      "month": "2024-01",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 151.86,
+      "month": "2024-02",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 141.5,
+      "month": "2024-02",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 163.82,
+      "month": "2024-02",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 212.32,
+      "month": "2024-03",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 236.87,
+      "month": "2024-03",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 218.2,
+      "month": "2024-03",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 217.69,
+      "month": "2024-04",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 225.1,
+      "month": "2024-04",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 230.06,
+      "month": "2024-04",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 289.76,
+      "month": "2024-05",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 309.68,
+      "month": "2024-05",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 302.51,
+      "month": "2024-05",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 258.16,
+      "month": "2024-06",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 281.35,
+      "month": "2024-06",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 259.94,
+      "month": "2024-06",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 363.11,
+      "month": "2024-07",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 402.69,
+      "month": "2024-07",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 355.5,
+      "month": "2024-07",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 465.19,
+      "month": "2024-08",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 517.6,
+      "month": "2024-08",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 452.04,
+      "month": "2024-08",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 73.97,
+      "month": "2024-09",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 75.51,
+      "month": "2024-09",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 80.09,
+      "month": "2024-09",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 54.0,
+      "month": "2024-10",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 55.03,
+      "month": "2024-10",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 59.0,
+      "month": "2024-10",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 28.79,
+      "month": "2024-11",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 25.88,
+      "month": "2024-11",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 34.74,
+      "month": "2024-11",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 30.0,
+      "month": "2024-12",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 21.22,
+      "month": "2024-12",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 36.73,
+      "month": "2024-12",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 112.15,
+      "month": "2025-01",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 115.28,
+      "month": "2025-01",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 121.63,
+      "month": "2025-01",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 264.58,
+      "month": "2025-02",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 257.77,
+      "month": "2025-02",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 273.72,
+      "month": "2025-02",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 282.32,
+      "month": "2025-03",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 310.62,
+      "month": "2025-03",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 283.31,
+      "month": "2025-03",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 320.22,
+      "month": "2025-04",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 348.24,
+      "month": "2025-04",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 319.58,
+      "month": "2025-04",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 200.55,
+      "month": "2025-05",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 216.03,
+      "month": "2025-05",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 202.85,
+      "month": "2025-05",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 121.83,
+      "month": "2025-06",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 130.78,
+      "month": "2025-06",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 127.05,
+      "month": "2025-06",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 103.09,
+      "month": "2025-07",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 107.82,
+      "month": "2025-07",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 107.43,
+      "month": "2025-07",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 173.7,
+      "month": "2025-08",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 185.86,
+      "month": "2025-08",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 177.05,
+      "month": "2025-08",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 112.19,
+      "month": "2025-09",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 120.77,
+      "month": "2025-09",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 115.94,
+      "month": "2025-09",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 29.6,
+      "month": "2025-10",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 29.41,
+      "month": "2025-10",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 32.28,
+      "month": "2025-10",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 59.3,
+      "month": "2025-11",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 57.97,
+      "month": "2025-11",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 70.2,
+      "month": "2025-11",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 3.52,
+      "month": "2026-01",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 1.99,
+      "month": "2026-01",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 4.07,
+      "month": "2026-01",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 46.96,
+      "month": "2026-02",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 39.84,
+      "month": "2026-02",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 50.94,
+      "month": "2026-02",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 144.61,
+      "month": "2026-03",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 151.82,
+      "month": "2026-03",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 152.26,
+      "month": "2026-03",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 101.03,
+      "month": "2026-04",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 106.13,
+      "month": "2026-04",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 102.28,
+      "month": "2026-04",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 76.5,
+      "month": "2026-05",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 79.65,
+      "month": "2026-05",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 80.08,
+      "month": "2026-05",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 37.09,
+      "month": "2026-06",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 37.83,
+      "month": "2026-06",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 40.91,
+      "month": "2026-06",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 56.52,
+      "month": "2026-07",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 47.34,
+      "month": "2026-07",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 64.41,
+      "month": "2026-07",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 73.9,
+      "month": "2026-08",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 66.98,
+      "month": "2026-08",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 85.42,
+      "month": "2026-08",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 37.41,
+      "month": "2026-09",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 24.23,
+      "month": "2026-09",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 44.09,
+      "month": "2026-09",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 45.6,
+      "month": "2026-10",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 24.23,
+      "month": "2026-10",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 55.8,
+      "month": "2026-10",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 65.03,
+      "month": "2026-11",
+      "node": "HAY2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 20.73,
+      "month": "2026-11",
+      "node": "ISL2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 78.87,
+      "month": "2026-11",
+      "node": "OTA2201",
+      "priceType": "final"
+    },
+    {
+      "meanPrice": 55.82,
+      "month": "2026-11",
+      "node": "HAY2201",
+      "priceType": "interim"
+    },
+    {
+      "meanPrice": 33.7,
+      "month": "2026-11",
+      "node": "ISL2201",
+      "priceType": "interim"
+    },
+    {
+      "meanPrice": 65.33,
+      "month": "2026-11",
+      "node": "OTA2201",
+      "priceType": "interim"
+    }
+  ]
+}

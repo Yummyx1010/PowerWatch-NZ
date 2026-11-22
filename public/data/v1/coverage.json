@@ -1,0 +1,517 @@
+{
+  "months": [
+    {
+      "end": "2023-11-30",
+      "key": "monthly:202311",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 347040,
+      "start": "2023-11-01",
+      "status": "ok"
+    },
+    {
+      "end": "2023-12-31",
+      "key": "monthly:202312",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 357720,
+      "start": "2023-12-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-01-31",
+      "key": "monthly:202401",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 357120,
+      "start": "2024-01-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-02-29",
+      "key": "monthly:202402",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 334080,
+      "start": "2024-02-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-03-31",
+      "key": "monthly:202403",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 355632,
+      "start": "2024-03-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-04-30",
+      "key": "monthly:202404",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 344940,
+      "start": "2024-04-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-05-31",
+      "key": "monthly:202405",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 357120,
+      "start": "2024-05-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-06-30",
+      "key": "monthly:202406",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 346896,
+      "start": "2024-06-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-07-31",
+      "key": "monthly:202407",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 358608,
+      "start": "2024-07-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-08-31",
+      "key": "monthly:202408",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 358608,
+      "start": "2024-08-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-09-30",
+      "key": "monthly:202409",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 346558,
+      "start": "2024-09-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-10-31",
+      "key": "monthly:202410",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 358608,
+      "start": "2024-10-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-11-30",
+      "key": "monthly:202411",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 347472,
+      "start": "2024-11-01",
+      "status": "ok"
+    },
+    {
+      "end": "2024-12-31",
+      "key": "monthly:202412",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 360096,
+      "start": "2024-12-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-01-31",
+      "key": "monthly:202501",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 360096,
+      "start": "2025-01-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-02-28",
+      "key": "monthly:202502",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 325248,
+      "start": "2025-02-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-03-31",
+      "key": "monthly:202503",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 360096,
+      "start": "2025-03-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-04-30",
+      "key": "monthly:202504",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 348000,
+      "start": "2025-04-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-05-31",
+      "key": "monthly:202505",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 359057,
+      "start": "2025-05-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-06-30",
+      "key": "monthly:202506",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 348480,
+      "start": "2025-06-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-07-31",
+      "key": "monthly:202507",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 360096,
+      "start": "2025-07-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-08-31",
+      "key": "monthly:202508",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 360096,
+      "start": "2025-08-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-09-30",
+      "key": "monthly:202509",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 349098,
+      "start": "2025-09-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-10-31",
+      "key": "monthly:202510",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 361584,
+      "start": "2025-10-01",
+      "status": "ok"
+    },
+    {
+      "end": "2025-11-30",
+      "key": "monthly:202511",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 349920,
+      "start": "2025-11-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-01-31",
+      "key": "monthly:202601",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 361584,
+      "start": "2026-01-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-02-28",
+      "key": "monthly:202602",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 327051,
+      "start": "2026-02-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-03-31",
+      "key": "monthly:202603",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 363072,
+      "start": "2026-03-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-04-30",
+      "key": "monthly:202604",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 352931,
+      "start": "2026-04-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-05-31",
+      "key": "monthly:202605",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 364560,
+      "start": "2026-05-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-06-30",
+      "key": "monthly:202606",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 353115,
+      "start": "2026-06-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-07-31",
+      "key": "monthly:202607",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 366048,
+      "start": "2026-07-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-08-31",
+      "key": "monthly:202608",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 366048,
+      "start": "2026-08-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-09-30",
+      "key": "monthly:202609",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 353748,
+      "start": "2026-09-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-10-31",
+      "key": "monthly:202610",
+      "kind": "monthly_final",
+      "priceStatus": "Final",
+      "rows": 366048,
+      "start": "2026-10-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-01",
+      "key": "daily:20261101",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-01",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-02",
+      "key": "daily:20261102",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-02",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-03",
+      "key": "daily:20261103",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-03",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-04",
+      "key": "daily:20261104",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-04",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-05",
+      "key": "daily:20261105",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-05",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-06",
+      "key": "daily:20261106",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-06",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-07",
+      "key": "daily:20261107",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-07",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-08",
+      "key": "daily:20261108",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-08",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-09",
+      "key": "daily:20261109",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-09",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-10",
+      "key": "daily:20261110",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-10",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-11",
+      "key": "daily:20261111",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-11",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-12",
+      "key": "daily:20261112",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-12",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-13",
+      "key": "daily:20261113",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-13",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-14",
+      "key": "daily:20261114",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-14",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-15",
+      "key": "daily:20261115",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-15",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-16",
+      "key": "daily:20261116",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-16",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-17",
+      "key": "daily:20261117",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-17",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-18",
+      "key": "daily:20261118",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-18",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-19",
+      "key": "daily:20261119",
+      "kind": "daily_final",
+      "priceStatus": "Final",
+      "rows": 11808,
+      "start": "2026-11-19",
+      "status": "ok"
+    },
+    {
+      "end": "2026-11-20",
+      "key": "daily:20261120",
+      "kind": "daily_interim",
+      "priceStatus": "Interim",
+      "rows": 11808,
+      "start": "2026-11-20",
+      "status": "interim"
+    },
+    {
+      "end": "2026-11-21",
+      "key": "daily:20261121",
+      "kind": "daily_interim",
+      "priceStatus": "Interim",
+      "rows": 11808,
+      "start": "2026-11-21",
+      "status": "interim"
+    },
+    {
+      "end": "2026-11-22",
+      "key": "daily:20261122",
+      "kind": "daily_interim",
+      "priceStatus": "Interim",
+      "rows": 11808,
+      "start": "2026-11-22",
+      "status": "interim"
+    }
+  ]
+}

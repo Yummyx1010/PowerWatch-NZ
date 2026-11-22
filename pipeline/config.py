@@ -34,6 +34,9 @@ NSP_TABLE_BLOB = (
 ATTRIBUTION = "www.emi.ea.govt.nz provided by the Electricity Authority (New Zealand)"
 LICENCE = "CC BY 4.0 International"
 
+HISTORY_START = date_type(2023, 11, 1)
+HISTORY_END = date_type(2026, 11, 22)
+
 PRICE_COLUMNS = {
     "TradingDate": "trading_date",
     "TradingPeriod": "trading_period",
