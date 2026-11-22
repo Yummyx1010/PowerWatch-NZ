@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
+  formatCompact,
   formatCount,
+  formatMonth,
   formatNzd,
   formatSampleDate,
   seriesToBarHeights,
@@ -15,6 +17,11 @@ describe("formatting helpers", () => {
 
   it("formats counts with en-NZ grouping", () => {
     expect(formatCount(11808)).toBe("11,808");
+  });
+
+  it("formats compact counts and months", () => {
+    expect(formatCompact(12646250)).toBe("12.6M");
+    expect(formatMonth("2026-11")).toBe("Nov 26");
   });
 
   it("formats the sample date without timezone drift", () => {

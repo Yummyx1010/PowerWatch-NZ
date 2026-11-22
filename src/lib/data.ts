@@ -1,0 +1,130 @@
+import { loadSampleSummary, type SampleSummary } from "./sample";
+
+export interface CoverageSummary {
+  requestedStart: string;
+  requestedEnd: string;
+  firstFinalDate: string | null;
+  lastFinalDate: string | null;
+  lastInterimDate: string | null;
+  finalDays: number;
+  interimDays: number;
+  gapDays: number;
+  gaps: Array<{ start: string; end: string }>;
+}
+
+export interface ManifestV1 {
+  schemaVersion: string;
+  dataVersion: string;
+  sourceCount: number;
+  coverage: CoverageSummary;
+}
+
+export interface CoverageMonth {
+  key: string;
+  kind: string;
+  status: string;
+  start: string;
+  end: string;
+  rows: number;
+  priceStatus: string;
+}
+
+export interface CoverageGap {
+  start: string;
+  end: string;
+  days: number;
+  reason: string;
+}
+
+export interface CoverageV1 {
+  months: CoverageMonth[];
+  gaps: CoverageGap[];
+}
+
+export interface QualityV1 {
+  schemaVersion: string;
+  sourceCount: number;
+  totals: {
+    rows: number;
+    duplicateKeys: number;
+    incompleteNodeDays: number;
+    negativePrices: number;
+    zeroPrices: number;
+  };
+  missingByColumn: Record<string, number>;
+  priceStatusCounts: Record<string, number>;
+  timeTagDistribution: Record<string, number>;
+  periodCountDays: Record<string, number>;
+  priceMin: number | null;
+  priceMax: number | null;
+}
+
+export interface PricePoint {
+  month: string;
+  node: string;
+  priceType: string;
+  meanPrice: number;
+}
+
+export interface PriceSummaryV1 {
+  nodes: string[];
+  points: PricePoint[];
+}
+
+export interface PowerWatchData {
+  sample: SampleSummary | null;
+  manifest: ManifestV1 | null;
+  coverage: CoverageV1 | null;
+  quality: QualityV1 | null;
+  priceSummary: PriceSummaryV1 | null;
+  errors: string[];
+}
+
+type JsonResult<T> = { value: T | null; error: string | null };
+
+async function fetchJson<T>(path: string): Promise<JsonResult<T>> {
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}${path}`);
+    if (!response.ok) return { value: null, error: `${path}: HTTP ${response.status}` };
+    return { value: (await response.json()) as T, error: null };
+  } catch (error) {
+    return { value: null, error: `${path}: ${String(error)}` };
+  }
+}
+
+export async function loadPowerWatchData(): Promise<PowerWatchData> {
+  const [sample, manifest, coverage, quality, priceSummary] = await Promise.all([
+    loadSampleSummary().then(
+      (value): JsonResult<SampleSummary> => ({ value, error: null }),
+      (error): JsonResult<SampleSummary> => ({ value: null, error: `sample-summary.json: ${String(error)}` }),
+    ),
+    fetchJson<ManifestV1>("data/v1/manifest.json"),
+    fetchJson<CoverageV1>("data/v1/coverage.json"),
+    fetchJson<QualityV1>("data/v1/quality.json"),
+    fetchJson<PriceSummaryV1>("data/v1/price-summary.json"),
+  ]);
+
+  return {
+    sample: sample.value,
+    manifest: manifest.value,
+    coverage: coverage.value,
+    quality: quality.value,
+    priceSummary: priceSummary.value,
+    errors: [sample, manifest, coverage, quality, priceSummary]
+      .map((result) => result.error)
+      .filter((error): error is string => error !== null),
+  };
+}
+
+export type DataFreshness = "loading" | "error" | "empty" | "fresh" | "stale";
+
+export function dataFreshness(data: PowerWatchData, loading: boolean): DataFreshness {
+  if (loading) return "loading";
+  if (!data.sample && !data.manifest && !data.coverage && !data.quality) return "error";
+  if (!data.sample && !data.manifest) return "empty";
+  if (!data.manifest?.dataVersion) return "stale";
+  const version = new Date(`${data.manifest.dataVersion}T00:00:00Z`);
+  if (Number.isNaN(version.getTime())) return "stale";
+  const ageDays = (Date.now() - version.getTime()) / 86_400_000;
+  return ageDays <= 30 ? "fresh" : "stale";
+}

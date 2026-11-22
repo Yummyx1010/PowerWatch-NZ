@@ -1,4 +1,12 @@
 {
+  "gaps": [
+    {
+      "days": 31,
+      "end": "2025-12-31",
+      "reason": "The official monthly file is published as incomplete, so it is excluded to avoid fabricating data.",
+      "start": "2025-12-01"
+    }
+  ],
   "months": [
     {
       "end": "2023-11-30",

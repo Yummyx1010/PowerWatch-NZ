@@ -1,11 +1,12 @@
 # NZ PowerWatch
 
 A modern, public-data product for exploring New Zealand's wholesale electricity market.
-Current scope: **M0 foundation + M1 historical data pipeline**.
+Current scope: **M0 foundation + M1 historical data pipeline + M2 design system & five-page frontend foundation**.
 
 ## What works
 
-- React + TypeScript + Vite front end with a distinctive "Playful Tech" design foundation (M0).
+- React + TypeScript + Vite front end with a distinctive "Playful Tech" design system and five
+  responsive page foundations using hash routing (M2).
 - Python pipeline with ~3 years of official Electricity Authority price data (M1).
 - Incremental, checksummed downloads with an explicit manifest covering 58 source files.
 - DST-exact trading-period timestamps (46/48/50 periods), Final vs Interim price status, and
@@ -51,9 +52,10 @@ python -m pipeline.cli export            # M0 committed sample + summary JSON
 npm run dev
 ```
 
-Open the URL Vite prints (usually `http://localhost:5173`). The page currently shows the M0
-design foundation and verified sample; the M1 JSON payloads are exported into
-`public/data/v1/` for later milestones.
+Open the URL Vite prints (usually `http://localhost:5173`). Navigation uses hash routes such as
+`#/overview`, `#/regions`, `#/anomalies`, `#/history` and `#/method`, which work on GitHub Pages
+without server rewrites. All five pages read the committed M0/M1 JSON snapshots; no fabricated
+prices or insights are rendered.
 
 ### 4. Build and test
 
@@ -100,7 +102,10 @@ data/manifest.json        Source and coverage manifest (committed)
 data/quality-report.json  Aggregate quality report (committed)
 data/samples/             Small committed real-data samples
 public/data/              Static JSON consumed by React, including v1/
-src/                      React app, components, styles and helpers
+src/pages/                Five route-level page foundations
+src/components/           Shared shell, data provider and UI components
+src/lib/                  Data loading, formatting and hash routing helpers
+src/styles/               Design tokens, global styles and page styles
 tests/                    Python and Vitest test suites
 docs/                     Data-source, data-dictionary and pipeline documentation
 ```

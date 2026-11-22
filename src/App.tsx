@@ -1,67 +1,61 @@
-import { useEffect, useState } from "react";
-import { InsightPlaces } from "./components/InsightPlaces";
-import { MethodStrip } from "./components/MethodStrip";
-import { SignalCard } from "./components/SignalCard";
+import { DataProvider, usePowerWatchData } from "./components/DataProvider";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { loadSampleSummary, type SampleSummary } from "./lib/sample";
+import { StatePanel } from "./components/ui";
+import { useHashRoute } from "./lib/router";
+import { AnomaliesPage } from "./pages/AnomaliesPage";
+import { HistoryPage } from "./pages/HistoryPage";
+import { MethodPage } from "./pages/MethodPage";
+import { OverviewPage } from "./pages/OverviewPage";
+import { RegionsPage } from "./pages/RegionsPage";
 
-export default function App() {
-  const [summary, setSummary] = useState<SampleSummary | null>(null);
-  const [loading, setLoading] = useState(true);
+function Shell() {
+  const { route, navigate } = useHashRoute();
+  const { data, loading, freshness, reload } = usePowerWatchData();
+  const statusLabel = `${data.manifest?.coverage.lastFinalDate ?? "no snapshot"} · ${data.manifest?.sourceCount ?? 0} sources`;
 
-  useEffect(() => {
-    let active = true;
-    loadSampleSummary()
-      .then((data) => {
-        if (active) setSummary(data);
-      })
-      .catch(() => {
-        if (active) setSummary(null);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+  const page = {
+    overview: <OverviewPage navigate={navigate} />,
+    regions: <RegionsPage />,
+    anomalies: <AnomaliesPage />,
+    history: <HistoryPage />,
+    method: <MethodPage />,
+  }[route];
 
   return (
-    <div id="top">
-      <SiteHeader statusLabel={loading ? "LOADING SAMPLE" : "M0 · REAL SAMPLE"} />
-      <main>
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="shell hero__grid">
-            <div>
-              <p className="eyebrow">Wholesale electricity intelligence · Aotearoa NZ</p>
-              <h1 id="hero-title">
-                The market has a <em>pulse.</em>
-              </h1>
-              <p className="hero__lede">
-                NZ PowerWatch turns public Electricity Authority data into clear stories about
-                price movement, regional difference and strange market days. This is the
-                foundation release: verified data, a distinct visual language, and a roadmap
-                you can follow.
-              </p>
-              <div className="hero__actions">
-                <a className="button button--primary" href="#overview">
-                  Explore the shape of it <span aria-hidden="true">→</span>
-                </a>
-                <a className="button button--ghost" href="#method-strip-title">
-                  See where data comes from
-                </a>
-              </div>
-            </div>
-            <SignalCard summary={summary} loading={loading} />
+    <div id="top" className="app-shell">
+      <SiteHeader route={route} navigate={navigate} freshness={freshness} statusLabel={statusLabel} />
+      <main className="page-stage" key={route}>
+        {loading && freshness === "loading" ? (
+          <div className="shell loading-stage" aria-label="Loading application data">
+            <div className="skeleton skeleton--wide" />
+            <div className="skeleton skeleton--title" />
+            <div className="skeleton skeleton--text" />
+            <div className="skeleton skeleton--text skeleton--short" />
+            <StatePanel tone="loading" title="Waking the market" message="Reading verified snapshots from the static data layer…" />
           </div>
-        </section>
-        <div className="shell">
-          <InsightPlaces />
-          <MethodStrip summary={summary} />
-        </div>
+        ) : freshness === "error" ? (
+          <div className="shell">
+            <StatePanel
+              tone="error"
+              title="Application data could not be loaded"
+              message={data.errors.join(" · ") || "Static JSON payloads are unavailable."}
+              action={<button className="button button--primary" type="button" onClick={reload}>Try again</button>}
+            />
+          </div>
+        ) : (
+          page
+        )}
       </main>
-      <SiteFooter summary={summary} />
+      <SiteFooter data={data} navigate={navigate} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <DataProvider>
+      <Shell />
+    </DataProvider>
   );
 }

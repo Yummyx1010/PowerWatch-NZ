@@ -108,6 +108,26 @@ def build_history(
     end = date.fromisoformat(str(manifest.get("requestedEnd", "2026-11-22")))
     coverage = coverage_summary(manifest, start, end)
 
+    gap_rows: list[dict[str, object]] = []
+    for gap in coverage["gaps"]:
+        first = date.fromisoformat(str(gap["start"]))
+        last = date.fromisoformat(str(gap["end"]))
+        reasons = {
+            "The official monthly file is published as incomplete, so it is excluded to avoid fabricating data."
+            for entry in manifest["sources"]
+            if entry.get("issue") == "incomplete_monthly_file"
+            and date.fromisoformat(str(entry["coverageStart"])) <= last
+            and date.fromisoformat(str(entry["coverageEnd"])) >= first
+        }
+        gap_rows.append(
+            {
+                "start": gap["start"],
+                "end": gap["end"],
+                "days": (last - first).days + 1,
+                "reason": next(iter(reasons), "No official file was published for this period."),
+            }
+        )
+
     coverage_rows: list[dict[str, object]] = []
     for entry in manifest["sources"]:
         if entry["status"] not in {"ok", "interim"}:
@@ -137,7 +157,7 @@ def build_history(
             "coverage": coverage,
         },
     )
-    write_json(public_dir / "coverage.json", {"months": coverage_rows})
+    write_json(public_dir / "coverage.json", {"months": coverage_rows, "gaps": gap_rows})
     write_json(public_dir / "quality.json", aggregate)
     write_json(public_dir / "price-summary.json", node_summary)
 

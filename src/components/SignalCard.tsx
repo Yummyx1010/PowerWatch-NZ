@@ -1,18 +1,12 @@
 import { formatCount, formatNzd, formatSampleDate, seriesToBarHeights } from "../lib/format";
-import type { SampleSummary } from "../lib/sample";
+import type { PowerWatchData } from "../lib/data";
 
-interface SignalCardProps {
-  summary: SampleSummary | null;
-  loading: boolean;
-}
-
-export function SignalCard({ summary, loading }: SignalCardProps) {
-  const heights = summary
-    ? seriesToBarHeights(summary.series.map((point) => point.price))
-    : [];
+export function SignalCard({ data, loading }: { data: PowerWatchData; loading: boolean }) {
+  const summary = data.sample;
+  const heights = summary ? seriesToBarHeights(summary.series.map((point) => point.price)) : [];
 
   return (
-    <aside className="signal-card" aria-label="Verified data sample">
+    <aside className="signal-card" aria-label="Verified real-data sample">
       <p className="signal-card__label">Verified sample // not live</p>
       <p className="signal-card__date">{formatSampleDate(summary?.sampleDate)}</p>
       <div

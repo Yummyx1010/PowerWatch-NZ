@@ -9,9 +9,13 @@
 
   --violet: #6b4cf1;
   --violet-deep: #4830c4;
+  --violet-soft: #eee9ff;
   --lime: #c9f05a;
+  --lime-soft: #f2fad6;
   --coral: #ff7a63;
+  --coral-soft: #ffe4de;
   --sky: #8ed8f8;
+  --sky-soft: #e3f5fd;
 
   --font-display: "Space Grotesk", "Arial Black", sans-serif;
   --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
