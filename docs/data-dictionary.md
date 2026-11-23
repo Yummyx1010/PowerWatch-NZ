@@ -47,5 +47,10 @@ Raw files remain untouched in `data/raw/`; standardised records live in
 - `data/quality-report.json`: aggregate duplicates, missing values, incomplete node-days, price
   extremes, price-status counts, period-count distribution and DST-tag distribution.
 - `data/quality-by-source.json`: the same checks per source, used to keep rebuilds incremental.
-- `public/data/v1/*.json`: compact, versioned payloads for future React views (`manifest`,
-  `coverage`, `quality`, `price-summary`).
+- `public/data/v1/*.json`: compact, versioned payloads for React (`manifest`, `coverage`,
+  `quality`, `price-summary`, `overview`).
+- `public/data/v1/overview.json` (M3): recent half-hour rows for the three representative nodes
+  (date, period, local/UTC start, node, price, Final/Interim status), one daily aggregate row per
+  node/day (mean/min/max/period count/status), derived metrics (latest prices, regional spread,
+  7-day half-hour price standard deviation, largest daily-mean move, 30-day ratio flags, negative
+  price count) and a `definitions` object stating each calculation rule.

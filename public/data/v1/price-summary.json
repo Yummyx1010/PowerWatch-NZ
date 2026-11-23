@@ -636,37 +636,37 @@
       "priceType": "final"
     },
     {
-      "meanPrice": 65.03,
+      "meanPrice": 56.81,
       "month": "2026-11",
       "node": "HAY2201",
       "priceType": "final"
     },
     {
-      "meanPrice": 20.73,
+      "meanPrice": 18.28,
       "month": "2026-11",
       "node": "ISL2201",
       "priceType": "final"
     },
     {
-      "meanPrice": 78.87,
+      "meanPrice": 69.24,
       "month": "2026-11",
       "node": "OTA2201",
       "priceType": "final"
     },
     {
-      "meanPrice": 55.82,
+      "meanPrice": 57.89,
       "month": "2026-11",
       "node": "HAY2201",
       "priceType": "interim"
     },
     {
-      "meanPrice": 33.7,
+      "meanPrice": 29.35,
       "month": "2026-11",
       "node": "ISL2201",
       "priceType": "interim"
     },
     {
-      "meanPrice": 65.33,
+      "meanPrice": 68.63,
       "month": "2026-11",
       "node": "OTA2201",
       "priceType": "interim"

@@ -86,12 +86,106 @@ const priceSummary = {
   ],
 };
 
+const overviewNodes = [
+  { code: "OTA2201", label: "Otahuhu" },
+  { code: "HAY2201", label: "Haywards" },
+  { code: "ISL2201", label: "Islington" },
+];
+
+const overviewRecent = ["2026-11-21", "2026-11-22"].flatMap((date, dayIndex) =>
+  overviewNodes.flatMap((node, nodeIndex) =>
+    Array.from({ length: 48 }, (_, periodIndex) => {
+      const period = periodIndex + 1;
+      const hour = String(Math.floor(periodIndex / 2)).padStart(2, "0");
+      const minute = periodIndex % 2 === 0 ? "00" : "30";
+      return {
+        date,
+        period,
+        local: `${date} ${hour}:${minute}`,
+        utc: `${date}T00:00:00Z`,
+        node: node.code,
+        label: node.label,
+        price: 40 + dayIndex * 12 + nodeIndex * 7 + periodIndex * 0.5,
+        status: dayIndex === 0 ? "Final" : "Interim",
+        type: dayIndex === 0 ? "final" : "interim",
+      };
+    }),
+  ),
+);
+
+const overviewDaily = ["2026-11-21", "2026-11-22"].flatMap((date, dayIndex) =>
+  overviewNodes.map((node, nodeIndex) => {
+    const mean = 60 + dayIndex * 12 + nodeIndex * 7;
+    return {
+      date,
+      node: node.code,
+      label: node.label,
+      mean,
+      min: mean - 10,
+      max: mean + 10,
+      periods: 48,
+      status: dayIndex === 0 ? "Final" : "Interim",
+      type: dayIndex === 0 ? "final" : "interim",
+    };
+  }),
+);
+
+const overview = {
+  schemaVersion: "1.0",
+  generatedFor: "2026-11-22",
+  nodes: overviewNodes,
+  recent: overviewRecent,
+  daily: overviewDaily,
+  metrics: {
+    latestDate: "2026-11-22",
+    latestFinalDate: "2026-11-19",
+    latestPrices: overviewNodes.map((node, index) => ({
+      node: node.code,
+      label: node.label,
+      price: 52 + index * 7 + 23.5,
+      status: "Interim",
+      local: "2026-11-22 23:30",
+    })),
+    latestDaily: overviewDaily.filter((row) => row.date === "2026-11-22"),
+    regionalSpread: {
+      date: "2026-11-22",
+      highNode: "OTA2201",
+      highLabel: "Otahuhu",
+      high: 84.5,
+      lowNode: "ISL2201",
+      lowLabel: "Islington",
+      low: 70.5,
+      difference: 14,
+      status: "Interim",
+    },
+    volatility7d: { OTA2201: 38.47, HAY2201: 31.65, ISL2201: 10.56 },
+    largestMove: {
+      node: "OTA2201",
+      label: "Otahuhu",
+      date: "2026-11-22",
+      from: 78.87,
+      to: 84.5,
+      change: 5.63,
+    },
+    negativeRecentPrices: 0,
+    notable: [],
+  },
+  definitions: {
+    volatility: "Sample standard deviation of half-hourly nodal prices.",
+    regionalSpread: "Difference between highest and lowest node daily mean.",
+    largestMove: "Largest daily-mean change between consecutive published days.",
+    notable: "Transparent 30-day ratio flag.",
+    status: "Final vs Interim price status.",
+  },
+};
+
 const payloads: Record<string, unknown> = {
   "data/sample-summary.json": summary,
   "data/v1/manifest.json": manifest,
   "data/v1/coverage.json": coverage,
   "data/v1/quality.json": quality,
   "data/v1/price-summary.json": priceSummary,
+  "data/v1/overview.json": overview,
 };
 
 function clickNav(name: string) {
@@ -106,7 +200,7 @@ function mockFetch(url: string) {
   return Promise.resolve({ ok: true, status: 200, json: async () => value });
 }
 
-describe("M2 frontend foundation", () => {
+describe("PowerWatch frontend foundation", () => {
   beforeEach(() => {
     window.location.hash = "";
     vi.stubGlobal("fetch", vi.fn(mockFetch));
@@ -122,10 +216,25 @@ describe("M2 frontend foundation", () => {
 
     expect(await screen.findByRole("heading", { name: /market has a pulse/i })).toBeTruthy();
     expect(screen.getAllByRole("link", { name: "Regions" }).length).toBeGreaterThan(0);
-    expect(screen.getByText("3")).toBeTruthy();
-    expect(screen.getByText(/19 November 2026/)).toBeTruthy();
+    expect(await screen.findByText("Price explorer")).toBeTruthy();
+    expect(screen.getByText("Market story")).toBeTruthy();
+    expect(screen.getByText("Recent extremes")).toBeTruthy();
+    expect(screen.getByText("Data freshness")).toBeTruthy();
+    expect(screen.getAllByText(/19 Nov 2026/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/CC BY 4.0/).length).toBeGreaterThan(0);
-    expect(await screen.findByText("12.6M")).toBeTruthy();
+  });
+
+  it("supports price explorer range and node controls", async () => {
+    render(<App />);
+    await screen.findByText("Price explorer");
+
+    const monthRange = screen.getByRole("button", { name: "30 days" });
+    fireEvent.click(monthRange);
+    expect(monthRange.getAttribute("aria-pressed")).toBe("true");
+
+    const haywards = screen.getByRole("button", { name: /Haywards/ });
+    fireEvent.click(haywards);
+    expect(haywards.getAttribute("aria-pressed")).toBe("false");
   });
 
   it("navigates to all five page foundations", async () => {

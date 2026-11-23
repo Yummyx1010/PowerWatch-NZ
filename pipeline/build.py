@@ -13,6 +13,7 @@ from .config import NSP_TABLE_BLOB, UNIQUE_REPRESENTATIVE_NODES
 from .download import fetch_file
 from .history import coverage_summary, load_manifest, mark_processed, spec_from_entry, write_json
 from .nodes import load_node_mapping
+from .overview import write_overview_payload
 from .quality import aggregate_quality, validate_source
 
 DEFAULT_MANIFEST = Path("data/manifest.json")
@@ -53,6 +54,7 @@ def build_history(
         quality_by_source = json.loads(sources_quality_path.read_text(encoding="utf-8"))
 
     processed_payloads: list[dict[str, object]] = []
+    month_frames: dict[str, list[pd.DataFrame]] = {}
     for entry in manifest.get("sources", []):
         if entry["status"] not in {"ok", "interim"}:
             continue
@@ -77,11 +79,9 @@ def build_history(
         month = str(entry["coverageStart"])[:7].replace("-", "")
         status = "interim" if entry["status"] == "interim" else "final"
         base = f"prices_{month}_{status}"
+        month_frames.setdefault(base, []).append(frame)
         parquet_path = Path(processed_dir) / f"{base}.parquet"
         csv_path = Path(processed_dir) / f"{base}.csv.gz"
-        frame.to_parquet(parquet_path, index=False)
-        frame.to_csv(csv_path, index=False, compression="gzip")
-
         outputs = [str(parquet_path).replace("\\", "/"), str(csv_path).replace("\\", "/")]
         mark_processed(
             manifest_path,
@@ -93,6 +93,19 @@ def build_history(
             item for item in load_manifest(manifest_path)["sources"] if item["key"] == key
         )
         processed_payloads.append({"entry": entry_for_payload, "quality": quality})
+
+    for base, frames in month_frames.items():
+        combined = (
+            pd.concat(frames, ignore_index=True)
+            .sort_values(["trading_date", "trading_period", "node"])
+            .reset_index(drop=True)
+        )
+        combined.to_parquet(Path(processed_dir) / f"{base}.parquet", index=False)
+        combined.to_csv(
+            Path(processed_dir) / f"{base}.csv.gz",
+            index=False,
+            compression="gzip",
+        )
 
     manifest = load_manifest(manifest_path)
     reports = [
@@ -160,6 +173,7 @@ def build_history(
     write_json(public_dir / "coverage.json", {"months": coverage_rows, "gaps": gap_rows})
     write_json(public_dir / "quality.json", aggregate)
     write_json(public_dir / "price-summary.json", node_summary)
+    overview = write_overview_payload(Path(processed_dir), Path(public_dir))
 
     return {
         "processedSources": len(processed_payloads),

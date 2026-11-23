@@ -71,12 +71,89 @@ export interface PriceSummaryV1 {
   points: PricePoint[];
 }
 
+export interface RecentPricePoint {
+  date: string;
+  period: number;
+  local: string;
+  utc: string;
+  node: string;
+  label: string;
+  price: number;
+  status: string;
+  type: string;
+}
+
+export interface DailyPricePoint {
+  date: string;
+  node: string;
+  label: string;
+  mean: number;
+  min: number;
+  max: number;
+  periods: number;
+  status: string;
+  type: string;
+}
+
+export interface OverviewMetrics {
+  latestDate: string;
+  latestFinalDate: string;
+  latestPrices: Array<{
+    node: string;
+    label: string;
+    price: number;
+    status: string;
+    local: string;
+  }>;
+  latestDaily: DailyPricePoint[];
+  regionalSpread: {
+    date: string;
+    highNode: string;
+    highLabel: string;
+    high: number;
+    lowNode: string;
+    lowLabel: string;
+    low: number;
+    difference: number;
+    status: string;
+  };
+  volatility7d: Record<string, number>;
+  largestMove: {
+    node: string;
+    label: string;
+    date: string;
+    from: number;
+    to: number;
+    change: number;
+  } | null;
+  negativeRecentPrices: number;
+  notable: Array<{
+    node: string;
+    label: string;
+    mean: number;
+    median30d: number;
+    ratio: number;
+    direction: string;
+  }>;
+}
+
+export interface OverviewV1 {
+  schemaVersion: string;
+  generatedFor: string;
+  nodes: Array<{ code: string; label: string }>;
+  recent: RecentPricePoint[];
+  daily: DailyPricePoint[];
+  metrics: OverviewMetrics;
+  definitions: Record<string, string>;
+}
+
 export interface PowerWatchData {
   sample: SampleSummary | null;
   manifest: ManifestV1 | null;
   coverage: CoverageV1 | null;
   quality: QualityV1 | null;
   priceSummary: PriceSummaryV1 | null;
+  overview: OverviewV1 | null;
   errors: string[];
 }
 
@@ -93,7 +170,7 @@ async function fetchJson<T>(path: string): Promise<JsonResult<T>> {
 }
 
 export async function loadPowerWatchData(): Promise<PowerWatchData> {
-  const [sample, manifest, coverage, quality, priceSummary] = await Promise.all([
+  const [sample, manifest, coverage, quality, priceSummary, overview] = await Promise.all([
     loadSampleSummary().then(
       (value): JsonResult<SampleSummary> => ({ value, error: null }),
       (error): JsonResult<SampleSummary> => ({ value: null, error: `sample-summary.json: ${String(error)}` }),
@@ -102,6 +179,7 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     fetchJson<CoverageV1>("data/v1/coverage.json"),
     fetchJson<QualityV1>("data/v1/quality.json"),
     fetchJson<PriceSummaryV1>("data/v1/price-summary.json"),
+    fetchJson<OverviewV1>("data/v1/overview.json"),
   ]);
 
   return {
@@ -110,7 +188,8 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     coverage: coverage.value,
     quality: quality.value,
     priceSummary: priceSummary.value,
-    errors: [sample, manifest, coverage, quality, priceSummary]
+    overview: overview.value,
+    errors: [sample, manifest, coverage, quality, priceSummary, overview]
       .map((result) => result.error)
       .filter((error): error is string => error !== null),
   };
