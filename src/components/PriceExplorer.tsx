@@ -36,11 +36,18 @@ function shiftDays(value: string, days: number): string {
   return date.toISOString().slice(0, 10);
 }
 
-export function PriceExplorer({ overview }: { overview: OverviewV1 }) {
+interface PriceExplorerProps {
+  overview: OverviewV1;
+  activeNodes?: string[];
+  onNodesChange?: (nodes: string[]) => void;
+}
+
+export function PriceExplorer({ overview, activeNodes: controlledNodes, onNodesChange }: PriceExplorerProps) {
   const [range, setRange] = useState<RangeId>("7D");
-  const [activeNodes, setActiveNodes] = useState<string[]>(
+  const [internalNodes, setInternalNodes] = useState<string[]>(
     overview.nodes.map((node) => node.code),
   );
+  const activeNodes = controlledNodes ?? internalNodes;
   const [zoom, setZoom] = useState<[number, number] | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [drag, setDrag] = useState<{ start: number; end: number } | null>(null);
@@ -141,13 +148,13 @@ export function PriceExplorer({ overview }: { overview: OverviewV1 }) {
   };
 
   const toggleNode = (node: string) => {
-    setActiveNodes((current) =>
-      current.includes(node)
-        ? current.length === 1
-          ? current
-          : current.filter((item) => item !== node)
-        : [...current, node].sort(),
-    );
+    const next = activeNodes.includes(node)
+      ? activeNodes.length === 1
+        ? activeNodes
+        : activeNodes.filter((item) => item !== node)
+      : [...activeNodes, node].sort();
+    if (controlledNodes) onNodesChange?.(next);
+    else setInternalNodes(next);
   };
 
   const changeRange = (next: RangeId) => {

@@ -1,5 +1,29 @@
 import type { ReactNode } from "react";
 
+export function Panel({
+  title,
+  note,
+  children,
+  className = "",
+  flush = false,
+}: {
+  title: string;
+  note?: string;
+  children: ReactNode;
+  className?: string;
+  flush?: boolean;
+}) {
+  return (
+    <section className={`panel ${className}`.trim()}>
+      <div className="panel__head">
+        <h2>{title}</h2>
+        {note ? <p>{note}</p> : null}
+      </div>
+      <div className={`panel__body${flush ? " panel__body--flush" : ""}`}>{children}</div>
+    </section>
+  );
+}
+
 export function PageIntro({
   eyebrow,
   title,

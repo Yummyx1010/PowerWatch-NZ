@@ -1,7 +1,7 @@
 # NZ PowerWatch
 
 A modern, public-data product for exploring New Zealand's wholesale electricity market.
-Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation + M3 functional Market Overview**.
+Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation + M3 Market Overview + M4 Regional Intelligence foundation**.
 
 ## What works
 
@@ -9,6 +9,8 @@ Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation
   responsive page foundations using hash routing (M2).
 - Functional Market Overview with a zoomable/filterable real price chart, node comparison,
   transparent Market Story and Final/Interim status handling (M3).
+- Regional Intelligence foundation with a schematic node map, linked node selection, real
+  regional spreads and node movement metrics (M4).
 - Python pipeline with ~3 years of official Electricity Authority price data (M1).
 - Incremental, checksummed downloads with an explicit manifest covering 58 source files.
 - DST-exact trading-period timestamps (46/48/50 periods), Final vs Interim price status, and

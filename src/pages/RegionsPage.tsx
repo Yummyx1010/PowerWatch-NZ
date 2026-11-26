@@ -1,147 +1,248 @@
 import { useMemo, useState } from "react";
+import { PriceExplorer } from "../components/PriceExplorer";
+import { RegionalMap } from "../components/RegionalMap";
 import { usePowerWatchData } from "../components/DataProvider";
-import { ChartFrame, DataCard, PageIntro, PlannedPanel, SectionHeading, StatePanel } from "../components/ui";
-import { formatNzd } from "../lib/format";
+import { Panel, StatePanel } from "../components/ui";
+import { formatCount, formatNzd, formatShortDate } from "../lib/format";
+import type { DailyPricePoint } from "../lib/data";
+
+const NODE_ORDER = ["OTA2201", "HAY2201", "ISL2201"];
+const NODE_COLORS: Record<string, string> = {
+  OTA2201: "#6b4cf1",
+  HAY2201: "#ff7a63",
+  ISL2201: "#179c8a",
+};
+
+function mean(values: number[]): number | null {
+  if (!values.length) return null;
+  return values.reduce((total, value) => total + value, 0) / values.length;
+}
+
+function nodeMean(rows: DailyPricePoint[], node: string, window: string[]): number | null {
+  return mean(
+    rows
+      .filter((row) => row.node === node && window.includes(row.date))
+      .map((row) => row.mean),
+  );
+}
+
+function signed(value: number | null): string {
+  if (value === null) return "—";
+  return `${value >= 0 ? "+" : "−"}${formatNzd(Math.abs(value))}`;
+}
 
 export function RegionsPage() {
   const { data, loading, freshness, reload } = usePowerWatchData();
-  const [selected, setSelected] = useState<string>("OTA2201");
+  const overview = data.overview;
+  const [activeNodes, setActiveNodes] = useState<string[]>(NODE_ORDER);
 
-  const nodes = data.sample?.nodes ?? [];
-  const points = data.priceSummary?.points ?? [];
+  const derived = useMemo(() => {
+    if (!overview) return null;
+    const rows = overview.daily;
+    const dates = Array.from(new Set(rows.map((row) => row.date))).sort();
+    const latestDay = dates[dates.length - 1] ?? "";
+    const latestRows = rows.filter((row) => row.date === latestDay);
+    const last7 = dates.slice(-7);
+    const previous7 = dates.slice(-14, -7);
 
-  const latestByNode = useMemo(() => {
-    const result = new Map<string, { month: string; price: number }>();
-    for (const point of points) {
-      if (point.priceType !== "final") continue;
-      const current = result.get(point.node);
-      if (!current || point.month > current.month) {
-        result.set(point.node, { month: point.month, price: point.meanPrice });
-      }
-    }
-    return result;
-  }, [points]);
+    const spreads = last7.map((date) => {
+      const values = rows.filter((row) => row.date === date).map((row) => row.mean);
+      return values.length >= 2 ? Math.max(...values) - Math.min(...values) : 0;
+    });
+    const latestValues = latestRows.map((row) => row.mean);
+    return {
+      dates,
+      latestDay,
+      latestRows,
+      last7,
+      previous7,
+      latestSpread: latestValues.length >= 2 ? Math.max(...latestValues) - Math.min(...latestValues) : 0,
+      averageSpread: mean(spreads) ?? 0,
+    };
+  }, [overview]);
 
-  if (loading && !data.sample) {
-    return <StatePanel tone="loading" title="Reading regional data" message="Loading verified node metadata…" />;
-  }
-
-  if (freshness === "error") {
+  if (!overview || !derived) {
     return (
-      <StatePanel
-        tone="error"
-        title="Regional data unavailable"
-        message={data.errors.join(" · ")}
-        action={<button className="button button--ghost" type="button" onClick={reload}>Retry</button>}
-      />
+      <div className="shell">
+        <StatePanel
+          tone={loading ? "loading" : "error"}
+          title={loading ? "Reading regional prices" : "Regional data unavailable"}
+          message={
+            loading
+              ? "Loading real nodal prices and node metadata…"
+              : data.errors.join(" · ") || "overview.json could not be loaded."
+          }
+          action={
+            loading ? undefined : (
+              <button className="button button--ghost" type="button" onClick={reload}>Retry</button>
+            )
+          }
+        />
+      </div>
     );
   }
 
-  const selectedMeta = nodes.find((node) => node.code === selected);
-  const selectedLatest = latestByNode.get(selected);
+  const nodeInfo = overview.nodes.map((node) => {
+    const meta = data.sample?.nodes.find((item) => item.code === node.code);
+    return {
+      code: node.code,
+      label: node.label,
+      area: meta?.area ?? "Representative node",
+      island: meta?.island ?? "—",
+    };
+  });
+
+  const toggleNode = (code: string) => {
+    setActiveNodes((current) => {
+      if (current.includes(code) && current.length === 1) return current;
+      return current.includes(code)
+        ? current.filter((item) => item !== code)
+        : [...current, code].sort();
+    });
+  };
+
+  const latestRows = [...derived.latestRows].sort(
+    (a, b) => NODE_ORDER.indexOf(a.node) - NODE_ORDER.indexOf(b.node),
+  );
+  const maxMean = Math.max(...latestRows.map((row) => row.mean), 1);
+  const movements = NODE_ORDER.map((node) => {
+    const recent = nodeMean(overview.daily, node, derived.last7);
+    const previous = nodeMean(overview.daily, node, derived.previous7);
+    return {
+      node,
+      recent,
+      change: recent !== null && previous !== null ? recent - previous : null,
+    };
+  });
 
   return (
     <div className="page page--regions">
-      <div className="shell">
-        <PageIntro
-          eyebrow="Regional intelligence"
-          title="Three nodes."
-          accent="One country."
-          lede="Prices in New Zealand are nodal, not national. This page establishes the node roster and the comparison surface; full regional analytics arrive in M4."
-          badge={nodes.length ? `${nodes.length} representative nodes` : undefined}
-        />
-
-        <section className="section">
-          <SectionHeading
-            index="01"
-            title="Representative node roster"
-            note="Latest available real monthly mean from the M1 price summary. Not a regional average."
-          />
-          <div className="node-roster">
-            {nodes.map((node) => {
-              const latest = latestByNode.get(node.code);
-              const active = node.code === selected;
-              return (
-                <button
-                  key={node.code}
-                  type="button"
-                  className={`node-card${active ? " node-card--active" : ""}`}
-                  aria-pressed={active}
-                  onClick={() => setSelected(node.code)}
-                >
-                  <span className="node-card__code">{node.code}</span>
-                  <strong>{node.label}</strong>
-                  <span className="node-card__area">{node.area} · {node.island}</span>
-                  <span className="node-card__price">
-                    {latest ? formatNzd(latest.price) : "—"}
-                    <small>{latest ? `mean · ${latest.month}` : "no data"}</small>
-                  </span>
-                </button>
-              );
-            })}
+      <header className="module-header">
+        <div className="shell module-header__inner">
+          <div>
+            <p className="eyebrow">Regional intelligence</p>
+            <h1>
+              Three nodes. <em>One market.</em>
+            </h1>
+            <p>Select a node, compare real prices, and see where representative nodes diverge.</p>
           </div>
-        </section>
+          <span className="module-header__badge">
+            {formatShortDate(overview.metrics.latestDate)} · {freshness === "stale" ? "STALE" : "SNAPSHOT"}
+          </span>
+        </div>
+      </header>
 
-        <section className="section regions-split">
-          <div className="island-rail" aria-label="Schematic island placement">
-            <div className="island-rail__head">
-              <span>ISLAND PLACEMENT</span>
-              <small>schematic only · not a map</small>
-            </div>
-            {(["NI", "SI"] as const).map((island) => (
-              <div key={island} className="island-rail__lane">
-                <span className="island-rail__label">{island === "NI" ? "North Island" : "South Island"}</span>
-                <div className="island-rail__track">
-                  {nodes
-                    .filter((node) => node.island === island)
-                    .map((node) => (
-                      <button
-                        key={node.code}
-                        type="button"
-                        className={`island-rail__node${node.code === selected ? " island-rail__node--active" : ""}`}
-                        onClick={() => setSelected(node.code)}
-                        aria-label={`Select ${node.label}`}
-                      >
-                        {node.label}
-                      </button>
-                    ))}
-                </div>
-              </div>
-            ))}
-            {selectedMeta ? (
-              <p className="island-rail__caption">
-                Selected: <strong>{selectedMeta.label}</strong> · {selectedMeta.area} ·{" "}
-                {selectedLatest ? `${formatNzd(selectedLatest.price)} mean in ${selectedLatest.month}` : "no summary yet"}
-              </p>
-            ) : null}
+      <div className="shell page__body">
+        <div className="module-ribbon" aria-label="Regional snapshot metrics">
+          <div>
+            <span>Latest node spread</span>
+            <strong>{formatNzd(derived.latestSpread)}</strong>
+            <small>{formatShortDate(derived.latestDay)} · nodal means</small>
           </div>
+          <div>
+            <span>7d average spread</span>
+            <strong>{formatNzd(derived.averageSpread)}</strong>
+            <small>Across representative nodes</small>
+          </div>
+          <div>
+            <span>Nodes in view</span>
+            <strong>{formatCount(activeNodes.length)} / 3</strong>
+            <small>Map and chart stay in sync</small>
+          </div>
+          <div>
+            <span>Price status</span>
+            <strong>{latestRows[0]?.status ?? "—"}</strong>
+            <small>Final through {formatShortDate(overview.metrics.latestFinalDate)}</small>
+          </div>
+        </div>
 
-          <ChartFrame
-            title="Regional spread over time"
-            subtitle="A real node-by-node spread chart belongs here."
-            status="planned"
+        <section className="regions-main" aria-label="Regional map and price comparison">
+          <RegionalMap nodes={nodeInfo} activeNodes={activeNodes} onToggleNode={toggleNode} />
+
+          <Panel
+            title="Node comparison"
+            note="Same real dataset as Market Overview. Drag to zoom; map markers and chart toggles are linked."
+            flush
           >
-            <div className="chart-placeholder">
-              <span className="chart-placeholder__axis">$/MWh</span>
-              <div className="chart-placeholder__lines" aria-hidden="true">
-                <i /><i /><i /><i />
-              </div>
-              <p>Spread analytics land in Milestone 4.</p>
-            </div>
-          </ChartFrame>
+            <PriceExplorer
+              overview={overview}
+              activeNodes={activeNodes}
+              onNodesChange={setActiveNodes}
+            />
+          </Panel>
         </section>
 
-        <section className="section">
-          <div className="stat-rail stat-rail--tight">
-            <DataCard label="Selected node" value={selectedMeta?.code ?? "—"} hint={selectedMeta?.label ?? "—"} />
-            <DataCard label="Island" value={selectedMeta?.island ?? "—"} hint="Explicit proxy label" tone="lime" />
-            <DataCard label="Price type" value="Final" hint="Interim rows kept separate" tone="sky" />
-          </div>
-          <PlannedPanel
-            title="Regional anomaly context"
-            milestone="M4 + M5"
-            description="Node rankings, spread bands and event context are intentionally not previewed as finished analysis."
-          />
+        <section className="supporting" aria-label="Regional detail">
+          <Panel title="Node roster" note="Latest daily mean per representative node.">
+            <div className="region-roster">
+              {nodeInfo.map((node) => {
+                const row = latestRows.find((item) => item.node === node.code);
+                const active = activeNodes.includes(node.code);
+                return (
+                  <button
+                    key={node.code}
+                    type="button"
+                    className={`region-roster__row${active ? " region-roster__row--active" : ""}`}
+                    aria-pressed={active}
+                    onClick={() => toggleNode(node.code)}
+                  >
+                    <span className="region-roster__dot" style={{ background: NODE_COLORS[node.code] }} />
+                    <span className="region-roster__name">
+                      <strong>{node.label}</strong>
+                      <small>{node.area} · {node.island} · {node.code}</small>
+                    </span>
+                    <span className="region-roster__value">
+                      {formatNzd(row?.mean)}
+                      <small>{row?.status ?? "—"}</small>
+                    </span>
+                    <span className="region-roster__bar">
+                      <i style={{ width: `${row ? Math.max(4, (row.mean / maxMean) * 100) : 4}%`, background: NODE_COLORS[node.code] }} />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </Panel>
+
+          <Panel title="Regional movement" note="Mean daily price over the last 7 published days vs the previous 7.">
+            <ul className="data-list">
+              {movements.map((item) => {
+                const info = nodeInfo.find((node) => node.code === item.node)!;
+                return (
+                  <li key={item.node}>
+                    <span>{info.label}</span>
+                    <strong>
+                      {formatNzd(item.recent)}
+                      <small>
+                        {signed(item.change)} vs prior 7d
+                      </small>
+                    </strong>
+                  </li>
+                );
+              })}
+            </ul>
+          </Panel>
+
+          <Panel title="How to read this" note="Transparent scope notes.">
+            <ul className="insight-list">
+              <li>
+                <strong>Nodal prices</strong>
+                <span>These are representative pricing nodes, not city-wide or regional averages.</span>
+              </li>
+              <li>
+                <strong>Price status</strong>
+                <span>Dashed chart lines mark Interim prices; solid lines are Final.</span>
+              </li>
+              <li>
+                <strong>Map intent</strong>
+                <span>The map is schematic and only shows node identity and island placement.</span>
+              </li>
+              <li>
+                <strong>No inferred causes</strong>
+                <span>Differences are observed values; no explanation is invented here.</span>
+              </li>
+            </ul>
+          </Panel>
         </section>
       </div>
     </div>

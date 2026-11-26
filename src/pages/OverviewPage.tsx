@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
 import { PriceExplorer } from "../components/PriceExplorer";
 import { usePowerWatchData } from "../components/DataProvider";
-import { StatePanel } from "../components/ui";
+import { Panel, StatePanel } from "../components/ui";
 import { formatCount, formatNzd, formatShortDate } from "../lib/format";
 import { ROUTES, type RouteId } from "../lib/router";
 import type { OverviewV1 } from "../lib/data";
@@ -42,30 +41,6 @@ function LatestTick({ overview, compact = false }: { overview: OverviewV1; compa
         </p>
       ) : null}
     </aside>
-  );
-}
-
-function Panel({
-  title,
-  note,
-  children,
-  className = "",
-  flush = false,
-}: {
-  title: string;
-  note?: string;
-  children: ReactNode;
-  className?: string;
-  flush?: boolean;
-}) {
-  return (
-    <section className={`panel ${className}`.trim()}>
-      <div className="panel__head">
-        <h2>{title}</h2>
-        {note ? <p>{note}</p> : null}
-      </div>
-      <div className={`panel__body${flush ? " panel__body--flush" : ""}`}>{children}</div>
-    </section>
   );
 }
 

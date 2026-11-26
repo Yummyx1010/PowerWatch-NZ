@@ -242,8 +242,15 @@ describe("PowerWatch frontend foundation", () => {
     await screen.findByRole("heading", { name: /market has a pulse/i });
 
     clickNav("Regions");
-    expect(await screen.findByText("Representative node roster")).toBeTruthy();
+    expect(await screen.findByText("Node comparison")).toBeTruthy();
+    expect(screen.getByText("Node map")).toBeTruthy();
+    expect(screen.getByText("Node roster")).toBeTruthy();
     expect(screen.getAllByText("Otahuhu").length).toBeGreaterThan(0);
+
+    const otahuhuMarker = screen.getByRole("button", { name: "Otahuhu, Auckland, OTA2201" });
+    expect(otahuhuMarker.getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(otahuhuMarker);
+    expect(otahuhuMarker.getAttribute("aria-pressed")).toBe("false");
 
     clickNav("Anomalies");
     expect(await screen.findByText(/Strange days deserve/)).toBeTruthy();
