@@ -1,7 +1,7 @@
 # NZ PowerWatch
 
 A modern, public-data product for exploring New Zealand's wholesale electricity market.
-Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation + M3 Market Overview + M4 Regional Intelligence foundation**.
+Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation + M3 Market Overview + M4 Regional Intelligence**.
 
 ## What works
 
@@ -9,8 +9,11 @@ Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation
   responsive page foundations using hash routing (M2).
 - Functional Market Overview with a zoomable/filterable real price chart, node comparison,
   transparent Market Story and Final/Interim status handling (M3).
-- Regional Intelligence foundation with a schematic node map, linked node selection, real
-  regional spreads and node movement metrics (M4).
+- Regional Intelligence with a Natural Earth basemap, 217 map-eligible nodes, price colouring,
+  zoom/pan, search/filters, multi-node comparison, interactive spread analysis, rankings and
+  island summaries (M4).
+- Market Overview extended to the full node universe with market-wide versus selected-node metrics
+  and shared node selection across Overview and Regions.
 - Python pipeline with ~3 years of official Electricity Authority price data (M1).
 - Incremental, checksummed downloads with an explicit manifest covering 58 source files.
 - DST-exact trading-period timestamps (46/48/50 periods), Final vs Interim price status, and
@@ -99,6 +102,9 @@ pipeline/                 Python ingestion, cleaning, validation and export
   clean.py                Canonical standardisation preserving originals
   quality.py              Per-source and aggregate validation
   build.py                Dataset and versioned JSON export
+  overview.py             Market Overview metrics and compact series
+  regional.py             All-node daily matrix and regional metrics
+  geo.py                  Official NZTM coordinate conversion
   cli.py                  python -m pipeline.cli <command>
 data/raw/                 Full-size source downloads (gitignored)
 data/processed/           Standardised Parquet + gzip CSV (gitignored)
@@ -107,7 +113,7 @@ data/quality-report.json  Aggregate quality report (committed)
 data/samples/             Small committed real-data samples
 public/data/              Static JSON consumed by React, including v1/
 src/pages/                Five route-level page foundations
-src/components/           Shared shell, data provider and UI components
+src/components/           Shared shell, data provider, maps and chart components
 src/lib/                  Data loading, formatting and hash routing helpers
 src/styles/               Design tokens, global styles and page styles
 tests/                    Python and Vitest test suites

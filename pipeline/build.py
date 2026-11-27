@@ -15,6 +15,7 @@ from .history import coverage_summary, load_manifest, mark_processed, spec_from_
 from .nodes import load_node_mapping
 from .overview import write_overview_payload
 from .quality import aggregate_quality, validate_source
+from .regional import write_regional_payload
 
 DEFAULT_MANIFEST = Path("data/manifest.json")
 DEFAULT_RAW = Path("data/raw")
@@ -46,7 +47,8 @@ def build_history(
 ) -> dict[str, object]:
     """Process every new or revised source, then export deterministic artefacts."""
     manifest = load_manifest(manifest_path)
-    mapping = load_node_mapping(ensure_node_mapping(raw_dir))
+    mapping_path = ensure_node_mapping(raw_dir)
+    mapping = load_node_mapping(mapping_path)
     Path(processed_dir).mkdir(parents=True, exist_ok=True)
 
     quality_by_source: dict[str, dict[str, object]] = {}
@@ -174,6 +176,11 @@ def build_history(
     write_json(public_dir / "quality.json", aggregate)
     write_json(public_dir / "price-summary.json", node_summary)
     overview = write_overview_payload(Path(processed_dir), Path(public_dir))
+    regional = write_regional_payload(
+        Path(processed_dir),
+        mapping_path,
+        Path(public_dir) / "regional.json",
+    )
 
     return {
         "processedSources": len(processed_payloads),

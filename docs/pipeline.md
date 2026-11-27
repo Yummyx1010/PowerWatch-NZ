@@ -14,7 +14,11 @@ The pipeline is deliberately file-based and database-free:
 4. **Validate** every source for duplicates, missing values, incomplete node-days, inconsistent
    period counts and price-status distribution.
 5. **Export** Parquet + gzip CSV per month/status into gitignored `data/processed/`, plus compact
-   versioned JSON into `public/data/v1/` for React.
+   versioned JSON into `public/data/v1/` for React. M4 adds `regional.json`, an all-node daily-mean
+   matrix with official NZTM-derived coordinates, written as minified JSON to keep static payloads
+   small (about 1.8 MB raw / 0.7 MB gzipped for 249 nodes × 1,087 dates). 217 nodes are map-eligible:
+   214 direct NSP coordinates plus three labelled same-substation proxies for the representative
+   GXP price codes. The browser map uses a compact public-domain Natural Earth coastline.
 
 No local timestamp is written into outputs, so repeated runs are byte-identical.
 

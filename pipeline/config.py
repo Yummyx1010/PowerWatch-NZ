@@ -37,6 +37,15 @@ LICENCE = "CC BY 4.0 International"
 HISTORY_START = date_type(2023, 11, 1)
 HISTORY_END = date_type(2026, 11, 22)
 
+# Representative GXP price codes are absent from the NSP POC table. These are
+# official NSP records for the same named substations, used only as clearly
+# labelled site-level coordinate proxies — never as invented GXP coordinates.
+REPRESENTATIVE_COORDINATE_PROXIES = {
+    "OTA2201": "OTA0221",
+    "HAY2201": "HAY0331",
+    "ISL2201": "ISL0331",
+}
+
 PRICE_COLUMNS = {
     "TradingDate": "trading_date",
     "TradingPeriod": "trading_period",

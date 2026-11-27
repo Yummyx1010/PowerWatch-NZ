@@ -147,6 +147,51 @@ export interface OverviewV1 {
   definitions: Record<string, string>;
 }
 
+export interface RegionalNode {
+  code: string;
+  label: string;
+  region: string;
+  island: string;
+  zone: string;
+  lat: number | null;
+  lon: number | null;
+  easting: number | null;
+  northing: number | null;
+  mappingStatus: string;
+  coordinateSource: string | null;
+  coordinateProxyCode: string | null;
+  hasMapPosition: boolean;
+  means: Array<number | null>;
+  latestIndex: number | null;
+  latest: number | null;
+  mean7d: number | null;
+  volatility7d: number | null;
+  min30d: number | null;
+  max30d: number | null;
+  negativeDays30d: number;
+  coverageDays: number;
+  finalDays: number;
+  interimDays: number;
+  observedPeriods: number;
+}
+
+export interface RegionalV1 {
+  schemaVersion: string;
+  dateCount: number;
+  dates: string[];
+  dateStatus: string[];
+  nodeCount: number;
+  mappedNodeCount: number;
+  representativeNodes: string[];
+  nodes: RegionalNode[];
+  notes: Record<string, string>;
+}
+
+export interface CoastlineV1 {
+  source: string;
+  polygons: number[][][];
+}
+
 export interface PowerWatchData {
   sample: SampleSummary | null;
   manifest: ManifestV1 | null;
@@ -154,6 +199,8 @@ export interface PowerWatchData {
   quality: QualityV1 | null;
   priceSummary: PriceSummaryV1 | null;
   overview: OverviewV1 | null;
+  regional: RegionalV1 | null;
+  coastline: CoastlineV1 | null;
   errors: string[];
 }
 
@@ -170,7 +217,7 @@ async function fetchJson<T>(path: string): Promise<JsonResult<T>> {
 }
 
 export async function loadPowerWatchData(): Promise<PowerWatchData> {
-  const [sample, manifest, coverage, quality, priceSummary, overview] = await Promise.all([
+  const [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline] = await Promise.all([
     loadSampleSummary().then(
       (value): JsonResult<SampleSummary> => ({ value, error: null }),
       (error): JsonResult<SampleSummary> => ({ value: null, error: `sample-summary.json: ${String(error)}` }),
@@ -180,6 +227,8 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     fetchJson<QualityV1>("data/v1/quality.json"),
     fetchJson<PriceSummaryV1>("data/v1/price-summary.json"),
     fetchJson<OverviewV1>("data/v1/overview.json"),
+    fetchJson<RegionalV1>("data/v1/regional.json"),
+    fetchJson<CoastlineV1>("data/geo/nz-coastline.json"),
   ]);
 
   return {
@@ -189,7 +238,9 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     quality: quality.value,
     priceSummary: priceSummary.value,
     overview: overview.value,
-    errors: [sample, manifest, coverage, quality, priceSummary, overview]
+    regional: regional.value,
+    coastline: coastline.value,
+    errors: [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline]
       .map((result) => result.error)
       .filter((error): error is string => error !== null),
   };

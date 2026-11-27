@@ -49,6 +49,16 @@ Raw files remain untouched in `data/raw/`; standardised records live in
 - `data/quality-by-source.json`: the same checks per source, used to keep rebuilds incremental.
 - `public/data/v1/*.json`: compact, versioned payloads for React (`manifest`, `coverage`,
   `quality`, `price-summary`, `overview`).
+- `public/data/v1/regional.json` (M4): compact all-node dataset generated from the full 12.65M-row
+  standardised history. It contains one shared `dates` array, a global `dateStatus` array, and for
+  each priced node a parallel `means` array of daily mean prices (null for missing node-days),
+  latest/7-day/30-day statistics, coverage counts, negative-price counts, and official NZTM-derived
+  coordinates when present. `OTA2201`, `HAY2201` and `ISL2201` are absent from the NSP POC table, so
+  they use clearly labelled same-substation coordinate proxies (`OTA0221`, `HAY0331`, `ISL0331`)
+  with `coordinateSource = official_nsp_substation_proxy`. Nodes without verified coordinates remain
+  in the dataset with `hasMapPosition = false` and are never given invented positions.
+- `public/data/geo/nz-coastline.json`: simplified Natural Earth 110m New Zealand coastline
+  (public domain), used as the geographically accurate base map for the interactive Regions map.
 - `public/data/v1/overview.json` (M3): recent half-hour rows for the three representative nodes
   (date, period, local/UTC start, node, price, Final/Interim status), one daily aggregate row per
   node/day (mean/min/max/period count/status), derived metrics (latest prices, regional spread,

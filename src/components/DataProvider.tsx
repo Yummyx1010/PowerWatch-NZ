@@ -15,6 +15,8 @@ const EMPTY_DATA: PowerWatchData = {
   quality: null,
   priceSummary: null,
   overview: null,
+  regional: null,
+  coastline: null,
   errors: [],
 };
 

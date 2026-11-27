@@ -1,55 +1,46 @@
-import { PriceExplorer } from "../components/PriceExplorer";
+import { useMemo, useState } from "react";
+import { RegionalCompare } from "../components/RegionalCompare";
 import { usePowerWatchData } from "../components/DataProvider";
 import { Panel, StatePanel } from "../components/ui";
 import { formatCount, formatNzd, formatShortDate } from "../lib/format";
+import { colorForNode } from "../lib/nodeColors";
 import { ROUTES, type RouteId } from "../lib/router";
-import type { OverviewV1 } from "../lib/data";
+import type { RegionalNode } from "../lib/data";
 
-const NODE_ORDER = ["OTA2201", "HAY2201", "ISL2201"];
-const NODE_COLORS: Record<string, string> = {
-  OTA2201: "#6b4cf1",
-  HAY2201: "#ff7a63",
-  ISL2201: "#179c8a",
-};
+function mean(values: number[]): number | null {
+  if (!values.length) return null;
+  return values.reduce((total, value) => total + value, 0) / values.length;
+}
 
-function LatestTick({ overview, compact = false }: { overview: OverviewV1; compact?: boolean }) {
-  const tick = overview.recent[overview.recent.length - 1];
-  const prices = [...overview.metrics.latestPrices].sort(
-    (a, b) => NODE_ORDER.indexOf(a.node) - NODE_ORDER.indexOf(b.node),
-  );
-  return (
-    <aside
-      className={`hero-tick${compact ? " hero-tick--compact" : ""}`}
-      aria-label="Latest available half-hour prices"
-    >
-      <p className="hero-tick__label">
-        Latest half-hour · {tick ? formatShortDate(tick.date) : "—"} · period {tick?.period ?? "—"}
-      </p>
-      <div className="hero-tick__prices">
-        {prices.map((price) => (
-          <div key={price.node} className="hero-tick__row">
-            <i style={{ background: NODE_COLORS[price.node] }} aria-hidden="true" />
-            <span>{price.label}</span>
-            <strong>{formatNzd(price.price)}</strong>
-            <small>{price.status}</small>
-          </div>
-        ))}
-      </div>
-      {!compact ? (
-        <p className="hero-tick__foot">
-          Nodal spot prices · dashed chart lines mark Interim values.
-        </p>
-      ) : null}
-    </aside>
-  );
+function median(values: number[]): number | null {
+  if (!values.length) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
 }
 
 export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void }) {
   const { data, loading, freshness, reload } = usePowerWatchData();
-  const overview = data.overview;
-  const metrics = overview?.metrics;
+  const regional = data.regional;
+  const [selectedCodes, setSelectedCodes] = useState<string[]>(
+    regional?.representativeNodes ?? [],
+  );
+  const [query, setQuery] = useState("");
 
-  if (!overview || !metrics) {
+  const matches = useMemo(() => {
+    if (!regional) return [];
+    const needle = query.trim().toLowerCase();
+    if (!needle) return [];
+    return regional.nodes
+      .filter((node) =>
+        node.label.toLowerCase().includes(needle) ||
+        node.code.toLowerCase().includes(needle) ||
+        node.region.toLowerCase().includes(needle),
+      )
+      .slice(0, 8);
+  }, [regional, query]);
+
+  if (!regional) {
     return (
       <div className="shell">
         <StatePanel
@@ -57,8 +48,8 @@ export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void 
           title={loading ? "Reading market snapshot" : "Market snapshot unavailable"}
           message={
             loading
-              ? "Loading real half-hourly prices and daily summaries…"
-              : data.errors.join(" · ") || "overview.json could not be loaded."
+              ? "Loading all-node wholesale prices…"
+              : data.errors.join(" · ") || "regional.json could not be loaded."
           }
           action={
             loading ? undefined : (
@@ -70,28 +61,47 @@ export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void 
     );
   }
 
-  const spread = metrics.regionalSpread;
-  const volatility = metrics.volatility7d.OTA2201;
-  const latestPrice = [...metrics.latestPrices].sort(
-    (a, b) => NODE_ORDER.indexOf(a.node) - NODE_ORDER.indexOf(b.node),
-  )[0];
-  const latestDaily = [...metrics.latestDaily].sort(
-    (a, b) => NODE_ORDER.indexOf(a.node) - NODE_ORDER.indexOf(b.node),
+  const latestIndex = regional.dates.length - 1;
+  const latestDate = regional.dates[latestIndex] ?? "—";
+  const latestStatus = regional.dateStatus[latestIndex] ?? "—";
+  const withLatest = regional.nodes.filter((node) => node.latest !== null);
+  const marketValues = withLatest.map((node) => node.latest as number);
+  const marketMean = mean(marketValues);
+  const marketMedian = median(marketValues);
+  const marketHigh = withLatest.reduce<RegionalNode | null>(
+    (best, node) => (!best || (node.latest ?? 0) > (best.latest ?? 0) ? node : best),
+    null,
   );
-  const maxMean = Math.max(...latestDaily.map((row) => row.mean), 1);
-  const lastTick = overview.recent[overview.recent.length - 1];
+  const marketLow = withLatest.reduce<RegionalNode | null>(
+    (best, node) => (!best || (node.latest ?? 0) < (best.latest ?? 0) ? node : best),
+    null,
+  );
+  const marketSpread = marketHigh && marketLow ? (marketHigh.latest ?? 0) - (marketLow.latest ?? 0) : 0;
+  const negativeNodes = withLatest.filter((node) => (node.latest ?? 0) < 0).length;
 
-  const recentTicks = overview.recent.filter((point) => typeof point.price === "number");
-  const recentHigh = recentTicks.length
-    ? recentTicks.reduce((best, point) => (point.price > best.price ? point : best))
-    : null;
-  const recentLow = recentTicks.length
-    ? recentTicks.reduce((best, point) => (point.price < best.price ? point : best))
-    : null;
-  const windowStart = overview.recent[0]?.date;
-  const windowEnd = lastTick?.date;
-  const coverage = data.manifest?.coverage;
-  const knownGap = coverage?.gaps?.[0];
+  const selectedNodes = regional.nodes.filter((node) => selectedCodes.includes(node.code));
+  const selectedValues = selectedNodes
+    .filter((node) => node.latest !== null)
+    .map((node) => node.latest as number);
+  const selectedMean = mean(selectedValues);
+  const selectedSpread = selectedValues.length
+    ? Math.max(...selectedValues) - Math.min(...selectedValues)
+    : 0;
+  const selectedVolatility = mean(
+    selectedNodes
+      .map((node) => node.volatility7d)
+      .filter((value): value is number => value !== null),
+  );
+  const selectedHigh = selectedNodes.reduce<RegionalNode | null>(
+    (best, node) => (!best || (node.latest ?? 0) > (best.latest ?? 0) ? node : best),
+    null,
+  );
+
+  const toggleNode = (code: string) => {
+    setSelectedCodes((current) =>
+      current.includes(code) ? current.filter((item) => item !== code) : [...current, code],
+    );
+  };
 
   return (
     <div className="page page--overview">
@@ -103,11 +113,29 @@ export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void 
               The market has a <em>pulse.</em>
             </h1>
             <p className="page-header__lede">
-              Real nodal prices. One primary trend. Node-level comparison without city-average claims.
+              Market-wide signals first. Select any pricing node to compare it with the market.
             </p>
           </div>
           <div className="page-header__side">
-            <LatestTick overview={overview} compact />
+            <aside className="hero-tick hero-tick--compact" aria-label="Market-wide snapshot">
+              <p className="hero-tick__label">
+                Market snapshot · {formatShortDate(latestDate)} · {latestStatus}
+              </p>
+              <div className="hero-tick__prices">
+                <div className="hero-tick__row">
+                  <i style={{ background: "var(--violet)" }} aria-hidden="true" />
+                  <span>Nodes priced</span>
+                  <strong>{formatCount(withLatest.length)}</strong>
+                  <small>/{formatCount(regional.nodeCount)}</small>
+                </div>
+                <div className="hero-tick__row">
+                  <i style={{ background: "var(--coral)" }} aria-hidden="true" />
+                  <span>Market spread</span>
+                  <strong>{formatNzd(marketSpread)}</strong>
+                  <small>NZ$/MWh</small>
+                </div>
+              </div>
+            </aside>
             <a
               className="page-header__method"
               href={ROUTES[4].path}
@@ -124,209 +152,119 @@ export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void 
 
       <div className="shell page__body">
         {freshness === "stale" ? (
-          <StatePanel
-            tone="stale"
-            title="Static snapshot"
-            message="This deployment uses a generated data snapshot. Check Data & Methodology for the current data version."
-          />
+          <StatePanel tone="stale" title="Static snapshot" message="Check Data & Methodology for the current data version." />
         ) : null}
 
-        <div className="market-ribbon" aria-label="Market snapshot">
-          <div className="market-ribbon__item">
-            <span className="market-ribbon__label">
-              <i className={latestPrice?.status === "Interim" ? "interim" : ""} aria-hidden="true" />
-              Latest price
-            </span>
-            <strong className="market-ribbon__value">{formatNzd(latestPrice?.price)}</strong>
-            <span className="market-ribbon__hint">
-              {latestPrice?.label} · {latestPrice?.status} · {formatShortDate(metrics.latestDate)}
-            </span>
+        <div className="market-ribbon" aria-label="Market-wide and selected-node metrics">
+          <div>
+            <span className="market-ribbon__label"><i aria-hidden="true" /> Market mean</span>
+            <strong className="market-ribbon__value">{formatNzd(marketMean)}</strong>
+            <span className="market-ribbon__hint">All {formatCount(withLatest.length)} priced nodes · NZ$/MWh</span>
           </div>
-          <div className="market-ribbon__item">
-            <span className="market-ribbon__label"><i aria-hidden="true" /> 7d volatility</span>
-            <strong className="market-ribbon__value">{formatNzd(volatility)}</strong>
-            <span className="market-ribbon__hint">Otahuhu half-hour price σ</span>
+          <div>
+            <span className="market-ribbon__label"><i aria-hidden="true" /> Market median</span>
+            <strong className="market-ribbon__value">{formatNzd(marketMedian)}</strong>
+            <span className="market-ribbon__hint">Robust centre of today's node distribution</span>
           </div>
-          <div className="market-ribbon__item">
-            <span className="market-ribbon__label"><i aria-hidden="true" /> Node spread</span>
-            <strong className="market-ribbon__value">{formatNzd(spread.difference)}</strong>
-            <span className="market-ribbon__hint">
-              {spread.highLabel} above {spread.lowLabel} · {spread.status}
-            </span>
+          <div>
+            <span className="market-ribbon__label"><i className="interim" aria-hidden="true" /> Selected mean</span>
+            <strong className="market-ribbon__value">{formatNzd(selectedMean)}</strong>
+            <span className="market-ribbon__hint">{formatCount(selectedCodes.length)} selected nodes · NZ$/MWh</span>
           </div>
-          <div className="market-ribbon__item">
-            <span className="market-ribbon__label"><i aria-hidden="true" /> Data window</span>
-            <strong className="market-ribbon__value">{formatShortDate(metrics.latestFinalDate)}</strong>
-            <span className="market-ribbon__hint">
-              Last final day · interim through {formatShortDate(metrics.latestDate)}
-            </span>
+          <div>
+            <span className="market-ribbon__label"><i aria-hidden="true" /> Selected spread</span>
+            <strong className="market-ribbon__value">{formatNzd(selectedSpread)}</strong>
+            <span className="market-ribbon__hint">Within current selection · NZ$/MWh</span>
           </div>
         </div>
 
         <section className="dashboard" id="price-explorer" aria-label="Primary market view">
           <Panel
             title="Price explorer"
-            note="Switch range and nodes. Drag to zoom into a period; hover for exact values and price status."
+            note="Daily mean prices in NZ$/MWh. Default nodes are Otahuhu, Haywards and Islington; choose any node from the full dataset."
             flush
           >
-            <PriceExplorer overview={overview} />
+            {selectedNodes.length ? (
+              <RegionalCompare regional={regional} selectedNodes={selectedNodes} />
+            ) : (
+              <StatePanel tone="empty" title="No nodes selected" message="Search and select nodes to compare prices." />
+            )}
           </Panel>
 
           <aside className="panel panel--story">
             <div className="panel__head">
-              <h2>Market story</h2>
-              <p>Short, data-grounded takeaways. No cause is inferred.</p>
+              <h2>Compare nodes</h2>
+              <p>Search by name, ID or region. Selections drive the chart and selected-node metrics.</p>
             </div>
             <div className="panel__body">
-              <ul className="insight-list">
-                <li>
-                  <strong>Latest half-hour</strong>
-                  <span>{lastTick?.local ?? "—"} · {lastTick?.status ?? "—"} status</span>
-                </li>
-                <li>
-                  <strong>Node spread</strong>
-                  <span>
-                    {spread.highLabel} {formatNzd(spread.high)} → {spread.lowLabel} {formatNzd(spread.low)}
-                  </span>
-                </li>
-                <li>
-                  <strong>7d volatility</strong>
-                  <span>Otahuhu half-hour σ {formatNzd(volatility)}</span>
-                </li>
-                {metrics.largestMove ? (
-                  <li>
-                    <strong>Largest daily move</strong>
-                    <span>
-                      {metrics.largestMove.label} · {formatShortDate(metrics.largestMove.date)} ·{" "}
-                      {formatNzd(metrics.largestMove.change)}
-                    </span>
-                  </li>
-                ) : null}
-                <li>
-                  <strong>30-day ratio flags</strong>
-                  <span>
-                    {metrics.notable.length} node{metrics.notable.length === 1 ? "" : "s"} flagged ·{" "}
-                    {metrics.negativeRecentPrices} negative half-hours
-                  </span>
-                </li>
-              </ul>
-
-              <details className="market-story__rules">
-                <summary>Calculation rules</summary>
-                <dl>
-                  {Object.entries(overview.definitions).map(([key, text]) => (
-                    <div key={key}>
-                      <dt>{key}</dt>
-                      <dd>{text}</dd>
-                    </div>
+              <input
+                type="search"
+                value={query}
+                placeholder="Search all 249 nodes…"
+                aria-label="Search market nodes"
+                className="overview-node-search"
+                onChange={(event) => setQuery(event.target.value)}
+              />
+              {matches.length ? (
+                <div className="overview-node-results">
+                  {matches.map((node) => (
+                    <button key={node.code} type="button" onClick={() => toggleNode(node.code)}>
+                      <i style={{ background: colorForNode(node.code) }} />
+                      <span>{node.label}</span>
+                      <small>{node.code}</small>
+                    </button>
                   ))}
-                </dl>
-              </details>
-            </div>
-            <div className="panel__foot">
-              <span>Electricity Authority public wholesale CSV</span>
-              <span>
-                {formatCount(overview.recent.length)} half-hour records ·{" "}
-                {formatCount(overview.daily.length)} daily aggregates
-              </span>
+                </div>
+              ) : null}
+              <div className="selected-chips">
+                {selectedNodes.map((node) => (
+                  <button key={node.code} type="button" onClick={() => toggleNode(node.code)} aria-label={`Remove ${node.label}`}>
+                    <i style={{ background: colorForNode(node.code) }} />
+                    {node.label}
+                    <span aria-hidden="true">×</span>
+                  </button>
+                ))}
+              </div>
+              <p className="selected-note">
+                Selected: {formatCount(selectedCodes.length)} nodes · mean {formatNzd(selectedMean)} · spread {formatNzd(selectedSpread)} · average 7d σ {formatNzd(selectedVolatility)}
+              </p>
             </div>
           </aside>
         </section>
 
-        <section className="supporting" aria-label="Supporting context">
-          <Panel
-            title="Regional snapshot"
-            note="Representative node daily means on the latest trading day. Not official city-wide averages."
-          >
-            <div className="regional-snapshot">
-              {latestDaily.map((row) => (
-                <div key={row.node} className="regional-snapshot__row">
-                  <span className="regional-snapshot__label">
-                    <strong>{row.label}</strong>
-                    <small>{row.node}</small>
-                  </span>
-                  <span className="regional-snapshot__bar">
-                    <i
-                      style={{
-                        width: `${Math.max(4, (row.mean / maxMean) * 100)}%`,
-                        background: NODE_COLORS[row.node],
-                      }}
-                    />
-                  </span>
-                  <span className="regional-snapshot__value">
-                    {formatNzd(row.mean)}
-                    <small>{row.status}</small>
-                  </span>
-                </div>
-              ))}
+        <section className="section">
+          <Panel title="Market story" note="Market-wide facts and selected-node facts are labelled separately. No cause is inferred.">
+            <div className="market-story__columns">
+              <ul className="insight-list">
+                <li><strong>Market-wide</strong><span>{formatCount(withLatest.length)} priced nodes on {formatShortDate(latestDate)}; {latestStatus} data.</span></li>
+                <li><strong>Market distribution</strong><span>Mean {formatNzd(marketMean)}, median {formatNzd(marketMedian)} · NZ$/MWh.</span></li>
+                <li><strong>Market extremes</strong><span>{marketHigh?.label ?? "—"} {formatNzd(marketHigh?.latest)} vs {marketLow?.label ?? "—"} {formatNzd(marketLow?.latest)}.</span></li>
+                <li><strong>Negative prices</strong><span>{formatCount(negativeNodes)} nodes below $0 in the latest observation.</span></li>
+              </ul>
+              <ul className="insight-list">
+                <li><strong>Selected nodes</strong><span>{formatCount(selectedCodes.length)} nodes · mean {formatNzd(selectedMean)} NZ$/MWh.</span></li>
+                <li><strong>Selected spread</strong><span>{formatNzd(selectedSpread)} NZ$/MWh within the current selection.</span></li>
+                <li><strong>Highest selected</strong><span>{selectedHigh?.label ?? "—"} at {formatNzd(selectedHigh?.latest)} NZ$/MWh.</span></li>
+                <li><strong>Comparable window</strong><span>Volatility uses the last 7 published trading dates per node.</span></li>
+              </ul>
             </div>
           </Panel>
+        </section>
 
-          <Panel
-            title="Recent extremes"
-            note={`Half-hour extremes across the loaded window ${formatShortDate(windowStart)} → ${formatShortDate(windowEnd)}.`}
-          >
+        <section className="supporting" aria-label="Supporting context">
+          <Panel title="Recent extremes" note="Market-wide extremes from the latest available trading day.">
             <ul className="data-list">
-              <li>
-                <span>Recent high</span>
-                <strong>
-                  {recentHigh ? formatNzd(recentHigh.price) : "—"}
-                  <small>{recentHigh ? `${recentHigh.label} · ${recentHigh.local}` : "—"}</small>
-                </strong>
-              </li>
-              <li>
-                <span>Recent low</span>
-                <strong>
-                  {recentLow ? formatNzd(recentLow.price) : "—"}
-                  <small>{recentLow ? `${recentLow.label} · ${recentLow.local}` : "—"}</small>
-                </strong>
-              </li>
-              <li>
-                <span>Largest daily move</span>
-                <strong>
-                  {metrics.largestMove ? formatNzd(metrics.largestMove.change) : "—"}
-                  <small>{metrics.largestMove ? metrics.largestMove.label : "—"}</small>
-                </strong>
-              </li>
-              <li>
-                <span>Negative half-hours</span>
-                <strong>
-                  {formatCount(metrics.negativeRecentPrices)}
-                  <small>Observed values only</small>
-                </strong>
-              </li>
+              <li><span>Highest node</span><strong>{formatNzd(marketHigh?.latest)}<small>{marketHigh?.label ?? "—"}</small></strong></li>
+              <li><span>Lowest node</span><strong>{formatNzd(marketLow?.latest)}<small>{marketLow?.label ?? "—"}</small></strong></li>
+              <li><span>Market spread</span><strong>{formatNzd(marketSpread)}<small>NZ$/MWh</small></strong></li>
             </ul>
           </Panel>
-
-          <Panel title="Data freshness" note="Snapshot version, price-status boundary and known coverage gap.">
+          <Panel title="Data freshness" note="Snapshot boundary and status.">
             <ul className="data-list">
-              <li>
-                <span>Snapshot version</span>
-                <strong>{data.manifest?.dataVersion ?? "—"}</strong>
-              </li>
-              <li>
-                <span>Final data through</span>
-                <strong>{formatShortDate(metrics.latestFinalDate)}</strong>
-              </li>
-              <li>
-                <span>Interim available through</span>
-                <strong>{formatShortDate(metrics.latestDate)}</strong>
-              </li>
-              <li>
-                <span>Source files</span>
-                <strong>{formatCount(data.manifest?.sourceCount)}</strong>
-              </li>
-              <li>
-                <span>Known gap</span>
-                <strong>
-                  {formatCount(coverage?.gapDays)} days
-                  <small>
-                    {knownGap
-                      ? `${formatShortDate(knownGap.start)} → ${formatShortDate(knownGap.end)}`
-                      : "None in requested range"}
-                  </small>
-                </strong>
-              </li>
+              <li><span>Latest data</span><strong>{formatShortDate(latestDate)}</strong></li>
+              <li><span>Price status</span><strong>{latestStatus}</strong></li>
+              <li><span>Source files</span><strong>{formatCount(data.manifest?.sourceCount)}</strong></li>
+              <li><span>Known gap</span><strong>{formatCount(data.manifest?.coverage.gapDays)} days</strong></li>
             </ul>
           </Panel>
         </section>

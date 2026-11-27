@@ -179,6 +179,66 @@ const overview = {
   },
 };
 
+const regionalDates = [
+  "2026-11-16", "2026-11-17", "2026-11-18", "2026-11-19",
+  "2026-11-20", "2026-11-21", "2026-11-22",
+];
+
+const regionalSeeds = [
+  { code: "OTA2201", label: "Otahuhu", region: "Auckland", island: "NI", lat: null, lon: null, mapped: false, base: 70 },
+  { code: "HAY2201", label: "Haywards", region: "Wellington", island: "NI", lat: null, lon: null, mapped: false, base: 62 },
+  { code: "ISL2201", label: "Islington", region: "Christchurch", island: "SI", lat: null, lon: null, mapped: false, base: 48 },
+  { code: "MNG1101", label: "Mangere", region: "Auckland", island: "NI", lat: -36.96, lon: 174.83, mapped: true, base: 74 },
+  { code: "ISL0331", label: "Islington 33kV", region: "Christchurch", island: "SI", lat: -43.53, lon: 172.60, mapped: true, base: 52 },
+];
+
+const regional = {
+  schemaVersion: "1.0",
+  dateCount: regionalDates.length,
+  dates: regionalDates,
+  dateStatus: ["Final", "Final", "Final", "Final", "Interim", "Interim", "Interim"],
+  nodeCount: regionalSeeds.length,
+  mappedNodeCount: regionalSeeds.filter((seed) => seed.mapped).length,
+  representativeNodes: ["OTA2201", "HAY2201", "ISL2201"],
+  nodes: regionalSeeds.map((seed) => {
+    const means = regionalDates.map((_, index) => seed.base + index * 2);
+    return {
+      code: seed.code,
+      label: seed.label,
+      region: seed.region,
+      island: seed.island,
+      zone: "TEST",
+      lat: seed.lat,
+      lon: seed.lon,
+      easting: null,
+      northing: null,
+      mappingStatus: seed.mapped ? "nsp_table" : "manual_override",
+      hasMapPosition: seed.mapped,
+      means,
+      latestIndex: means.length - 1,
+      latest: means[means.length - 1],
+      mean7d: means[means.length - 1] - 6,
+      volatility7d: 4.2,
+      min30d: seed.base,
+      max30d: means[means.length - 1],
+      negativeDays30d: 0,
+      coverageDays: means.length,
+      finalDays: 4,
+      interimDays: 3,
+      observedPeriods: means.length * 48,
+    };
+  }),
+  notes: {},
+};
+
+const coastline = {
+  source: "Natural Earth 110m admin-0 countries (public domain)",
+  polygons: [
+    [[172.7, -40.5], [174.3, -41.2], [172.0, -41.0]],
+    [[172.7, -34.4], [174.3, -35.8], [172.1, -35.8]],
+  ],
+};
+
 const payloads: Record<string, unknown> = {
   "data/sample-summary.json": summary,
   "data/v1/manifest.json": manifest,
@@ -186,6 +246,8 @@ const payloads: Record<string, unknown> = {
   "data/v1/quality.json": quality,
   "data/v1/price-summary.json": priceSummary,
   "data/v1/overview.json": overview,
+  "data/v1/regional.json": regional,
+  "data/geo/nz-coastline.json": coastline,
 };
 
 function clickNav(name: string) {
@@ -224,7 +286,7 @@ describe("PowerWatch frontend foundation", () => {
     expect(screen.getAllByText(/CC BY 4.0/).length).toBeGreaterThan(0);
   });
 
-  it("supports price explorer range and node controls", async () => {
+  it("supports price explorer range and all-node selection", async () => {
     render(<App />);
     await screen.findByText("Price explorer");
 
@@ -232,9 +294,9 @@ describe("PowerWatch frontend foundation", () => {
     fireEvent.click(monthRange);
     expect(monthRange.getAttribute("aria-pressed")).toBe("true");
 
-    const haywards = screen.getByRole("button", { name: /Haywards/ });
-    fireEvent.click(haywards);
-    expect(haywards.getAttribute("aria-pressed")).toBe("false");
+    fireEvent.change(screen.getByLabelText("Search market nodes"), { target: { value: "Mangere" } });
+    fireEvent.click(document.querySelector(".overview-node-results button") as HTMLButtonElement);
+    expect(screen.getByRole("button", { name: "Remove Mangere" })).toBeTruthy();
   });
 
   it("navigates to all five page foundations", async () => {
@@ -242,15 +304,20 @@ describe("PowerWatch frontend foundation", () => {
     await screen.findByRole("heading", { name: /market has a pulse/i });
 
     clickNav("Regions");
-    expect(await screen.findByText("Node comparison")).toBeTruthy();
-    expect(screen.getByText("Node map")).toBeTruthy();
-    expect(screen.getByText("Node roster")).toBeTruthy();
-    expect(screen.getAllByText("Otahuhu").length).toBeGreaterThan(0);
+    expect(await screen.findByText("Pricing node map")).toBeTruthy();
+    expect(screen.getByText("Node explorer")).toBeTruthy();
+    expect(screen.getByText("Selected node comparison")).toBeTruthy();
+    expect(screen.getByText("Price ranking")).toBeTruthy();
+    expect(screen.getByText("Spread & volatility")).toBeTruthy();
+    expect(document.querySelectorAll(".nz-map__land").length).toBe(2);
 
-    const otahuhuMarker = screen.getByRole("button", { name: "Otahuhu, Auckland, OTA2201" });
-    expect(otahuhuMarker.getAttribute("aria-pressed")).toBe("true");
-    fireEvent.click(otahuhuMarker);
-    expect(otahuhuMarker.getAttribute("aria-pressed")).toBe("false");
+    fireEvent.change(screen.getByLabelText("Search nodes"), { target: { value: "Mangere" } });
+    expect(screen.getAllByText("Mangere").length).toBeGreaterThan(0);
+
+    const mangereMarker = screen.getByRole("button", { name: /Mangere, MNG1101/ });
+    expect(mangereMarker.getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(mangereMarker);
+    expect(mangereMarker.getAttribute("aria-pressed")).toBe("true");
 
     clickNav("Anomalies");
     expect(await screen.findByText(/Strange days deserve/)).toBeTruthy();

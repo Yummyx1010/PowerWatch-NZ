@@ -629,6 +629,88 @@
   color: var(--ink-faint);
 }
 
+.overview-node-search {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.overview-node-results {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--space-2);
+}
+
+.overview-node-results button {
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr) auto;
+  gap: var(--space-2);
+  align-items: center;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+
+.overview-node-results i,
+.selected-chips i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.overview-node-results small {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--ink-faint);
+}
+
+.selected-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-4);
+}
+
+.selected-chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.selected-chips button:hover {
+  border-color: var(--coral);
+}
+
+.selected-note {
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+
+.market-story__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
 @media (max-width: 1060px) {
   .dashboard {
     grid-template-columns: 1fr;
@@ -672,7 +754,8 @@
   .hero-tick { transform: none; }
   .market-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-block: var(--space-4); }
   .market-ribbon__item:nth-child(2) { border-right: 0; }
-  .market-story { grid-template-columns: 1fr; }
+  .market-story,
+  .market-story__columns { grid-template-columns: 1fr; }
   .regional-snapshot__row { grid-template-columns: 92px minmax(0, 1fr) 78px; gap: var(--space-2); }
   .price-explorer__tooltip { right: 12px; top: 12px; min-width: 180px; }
   .dashboard,
