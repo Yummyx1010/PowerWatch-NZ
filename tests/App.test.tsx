@@ -1,5 +1,4 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import App from "../src/App";
 
 const summary = {
@@ -239,6 +238,94 @@ const coastline = {
   ],
 };
 
+const anomalies = {
+  schemaVersion: "1.0",
+  nodeCount: regionalSeeds.length,
+  dateCount: regionalDates.length,
+  coverage: { start: "2023-11-01", end: "2026-11-22", dateStatus: ["Final", "Interim"] },
+  thresholds: { spikeDropLocalZ: 4 },
+  methods: { scope: "Daily nodal prices from the full dataset." },
+  summary: {
+    eventCount: 3,
+    statisticalCount: 2,
+    marketEventCount: 1,
+    byType: { price_spike: 1, negative_price: 1, volatility: 1 },
+    byTier: { high: 1, medium: 1, low: 1 },
+    byMonth: { "2026-01": 1, "2026-11": 2 },
+    simultaneousClusters: 1,
+    clustersByClass: { mixed: 1 },
+  },
+  events: [
+    {
+      id: "price_spike:MNG1101:2026-11-20:2026-11-20",
+      type: "price_spike",
+      classification: "statistical_anomaly",
+      node: "MNG1101",
+      label: "Mangere",
+      region: "Auckland",
+      island: "NI",
+      start: "2026-11-20",
+      end: "2026-11-20",
+      duration: 1,
+      peakDate: "2026-11-20",
+      severity: 72,
+      tier: "high",
+      score: 6.4,
+      price: 180.5,
+      dailyMin: 120.2,
+      status: "Interim",
+      stats: { price: 180.5, dailyMin: 120.2, rollingMedian: 70.1, seasonalMedian: 80.2, localZ: 6.4, seasonalZ: 4.1, divergenceZ: 3.2, volatilityRatio: 1.4 },
+      reasons: ["Local robust z-score 6.4", "Duration 1 published day"],
+    },
+    {
+      id: "negative_price:AVI2201:2026-11-21:2026-11-21",
+      type: "negative_price",
+      classification: "market_event",
+      node: "AVI2201",
+      label: "Aviemore",
+      region: "Otago",
+      island: "SI",
+      start: "2026-11-21",
+      end: "2026-11-21",
+      duration: 1,
+      peakDate: "2026-11-21",
+      severity: 24,
+      tier: "low",
+      score: -0.2,
+      price: 12.4,
+      dailyMin: -0.2,
+      status: "Interim",
+      stats: { price: 12.4, dailyMin: -0.2, rollingMedian: 40, seasonalMedian: 42, localZ: -2, seasonalZ: -2, divergenceZ: -1, volatilityRatio: 1 },
+      reasons: ["Daily minimum -$0.20/MWh below zero"],
+    },
+    {
+      id: "volatility:OTA2201:2026-01-15:2026-01-17",
+      type: "volatility",
+      classification: "statistical_anomaly",
+      node: "OTA2201",
+      label: "Old Event",
+      region: "Auckland",
+      island: "NI",
+      start: "2026-01-15",
+      end: "2026-01-17",
+      duration: 3,
+      peakDate: "2026-01-15",
+      severity: 48,
+      tier: "medium",
+      score: 5.2,
+      price: 110.4,
+      dailyMin: 88.2,
+      status: "Final",
+      stats: { price: 110.4, dailyMin: 88.2, rollingMedian: 72.1, seasonalMedian: 76.2, crossMedian: 90.1, localZ: 5.2, seasonalZ: 3.1, divergenceZ: 1.4, volatilityRatio: 5.4 },
+      reasons: ["14-day volatility ratio 5.4× this node's typical dispersion", "Duration 3 published days"],
+    },
+  ],
+  clusters: [
+    { date: "2026-11-20", nodeCount: 2, typeCount: 2, eventCount: 2, maxSeverity: 72, statisticalCount: 1, marketEventCount: 1, classification: "mixed", dominantType: "price_spike", nodes: ["MNG1101", "AVI2201"], types: ["price_spike", "negative_price"], eventIds: ["price_spike:MNG1101:2026-11-20:2026-11-20", "negative_price:AVI2201:2026-11-21:2026-11-21"] },
+  ],
+  patterns: [{ node: "MNG1101", type: "price_spike", count: 1 }],
+};
+
 const payloads: Record<string, unknown> = {
   "data/sample-summary.json": summary,
   "data/v1/manifest.json": manifest,
@@ -248,6 +335,7 @@ const payloads: Record<string, unknown> = {
   "data/v1/overview.json": overview,
   "data/v1/regional.json": regional,
   "data/geo/nz-coastline.json": coastline,
+  "data/v1/anomalies.json": anomalies,
 };
 
 function clickNav(name: string) {
@@ -320,8 +408,13 @@ describe("PowerWatch frontend foundation", () => {
     expect(mangereMarker.getAttribute("aria-pressed")).toBe("true");
 
     clickNav("Anomalies");
-    expect(await screen.findByText(/Strange days deserve/)).toBeTruthy();
-    expect(screen.getByText("Evidence already in the data")).toBeTruthy();
+    expect(await screen.findByText(/Strange days/)).toBeTruthy();
+    expect(screen.getByText("Event timeline")).toBeTruthy();
+    expect(screen.getByText("Detected events")).toBeTruthy();
+    expect(screen.getByText("Event detail")).toBeTruthy();
+    expect(screen.getByText("Full-history summary")).toBeTruthy();
+    expect(screen.getAllByText(/Currently filtered/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/NZ\$/).length).toBeGreaterThan(0);
 
     clickNav("History");
     expect(await screen.findByText(/Three years/)).toBeTruthy();
@@ -334,5 +427,27 @@ describe("PowerWatch frontend foundation", () => {
     clickNav("Method");
     expect(await screen.findByText(/Receipts, not/)).toBeTruthy();
     expect(screen.getByText("Quality checks actually run")).toBeTruthy();
+  });
+
+  it("separates all-history totals from filtered events and opens price context", async () => {
+    render(<App />);
+    await screen.findByRole("heading", { name: /market has a pulse/i });
+    clickNav("Anomalies");
+    expect(await screen.findByText("Event timeline")).toBeTruthy();
+
+    expect(screen.getByText("Full-history summary")).toBeTruthy();
+    expect(screen.getByText("Price context unavailable")).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "All" }));
+    expect(screen.getByText(/3 events across 3 dates/)).toBeTruthy();
+    expect(screen.getAllByText("Old Event").length).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getAllByRole("button", { name: /Mangere/ })[0]);
+    expect(await screen.findByRole("img", { name: /Price context for Mangere/ })).toBeTruthy();
+    expect(screen.getAllByText(/NZ\$/).length).toBeGreaterThan(0);
+
+    fireEvent.change(screen.getByLabelText("Filter severity"), { target: { value: "low" } });
+    expect(screen.getByText(/1 matching/)).toBeTruthy();
+    expect(screen.getByText("Price context unavailable")).toBeTruthy();
   });
 });

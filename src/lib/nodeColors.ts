@@ -17,6 +17,27 @@ export function colorForNode(code: string): string {
   return PALETTE[hash % PALETTE.length];
 }
 
+export function colorForAnomalyType(type: string): string {
+  const colors: Record<string, string> = {
+    price_spike: "#ff7a63",
+    price_drop: "#6b4cf1",
+    negative_price: "#3d2f8f",
+    volatility: "#d4941b",
+    node_divergence: "#179c8a",
+  };
+  return colors[type] ?? "#6d7688";
+}
+
+export function colorForSeverity(tier: string): string {
+  const colors: Record<string, string> = {
+    low: "#8ed8f8",
+    medium: "#c9f05a",
+    high: "#ff7a63",
+    critical: "#c8322c",
+  };
+  return colors[tier] ?? "#6d7688";
+}
+
 export function colorForPrice(value: number | null, min: number, max: number): string {
   if (value === null) return "#dfe2d6";
   if (value < 0) return "#6b4cf1";

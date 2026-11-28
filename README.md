@@ -1,7 +1,7 @@
 # NZ PowerWatch
 
 A modern, public-data product for exploring New Zealand's wholesale electricity market.
-Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation + M3 Market Overview + M4 Regional Intelligence**.
+Current scope: **M0–M5**, including the full-node wholesale history, Market Overview, Regional Intelligence and explainable anomaly detection.
 
 ## What works
 
@@ -14,6 +14,9 @@ Current scope: **M0 foundation + M1 historical pipeline + M2 frontend foundation
   island summaries (M4).
 - Market Overview extended to the full node universe with market-wide versus selected-node metrics
   and shared node selection across Overview and Regions.
+- Anomaly Intelligence with explainable spike/volatility/divergence detection, separate
+  negative-price market events, interactive timeline, filtering, event details, recurring patterns
+  and simultaneous clusters; summaries are integrated into Overview and Regions.
 - Python pipeline with ~3 years of official Electricity Authority price data (M1).
 - Incremental, checksummed downloads with an explicit manifest covering 58 source files.
 - DST-exact trading-period timestamps (46/48/50 periods), Final vs Interim price status, and
@@ -105,6 +108,7 @@ pipeline/                 Python ingestion, cleaning, validation and export
   overview.py             Market Overview metrics and compact series
   regional.py             All-node daily matrix and regional metrics
   geo.py                  Official NZTM coordinate conversion
+  anomalies.py            Explainable full-node anomaly detection
   cli.py                  python -m pipeline.cli <command>
 data/raw/                 Full-size source downloads (gitignored)
 data/processed/           Standardised Parquet + gzip CSV (gitignored)

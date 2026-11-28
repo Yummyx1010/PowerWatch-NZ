@@ -187,6 +187,65 @@ export interface RegionalV1 {
   notes: Record<string, string>;
 }
 
+export interface AnomalyEvent {
+  id: string;
+  type: string;
+  classification: string;
+  node: string;
+  label: string;
+  region: string;
+  island: string;
+  start: string;
+  end: string;
+  duration: number;
+  peakDate: string;
+  severity: number;
+  tier: string;
+  score: number;
+  price: number;
+  dailyMin: number;
+  status: string;
+  stats: Record<string, number>;
+  reasons: string[];
+}
+
+export interface AnomalyCluster {
+  date: string;
+  nodeCount: number;
+  typeCount: number;
+  eventCount: number;
+  maxSeverity: number;
+  statisticalCount?: number;
+  marketEventCount?: number;
+  classification?: string;
+  dominantType?: string;
+  nodes: string[];
+  types: string[];
+  eventIds: string[];
+}
+
+export interface AnomaliesV1 {
+  schemaVersion: string;
+  nodeCount: number;
+  dateCount: number;
+  coverage: { start: string | null; end: string | null; dateStatus: string[] };
+  thresholds: Record<string, number>;
+  methods: Record<string, string>;
+  summary: {
+    eventCount: number;
+    statisticalCount: number;
+    marketEventCount: number;
+    byType: Record<string, number>;
+    byTier: Record<string, number>;
+    byMonth: Record<string, number>;
+    simultaneousClusters: number;
+    clustersByClass?: Record<string, number>;
+  };
+  events: AnomalyEvent[];
+  clusters: AnomalyCluster[];
+  patterns: Array<{ node: string; type: string; count: number }>;
+}
+
 export interface CoastlineV1 {
   source: string;
   polygons: number[][][];
@@ -201,6 +260,7 @@ export interface PowerWatchData {
   overview: OverviewV1 | null;
   regional: RegionalV1 | null;
   coastline: CoastlineV1 | null;
+  anomalies: AnomaliesV1 | null;
   errors: string[];
 }
 
@@ -217,7 +277,7 @@ async function fetchJson<T>(path: string): Promise<JsonResult<T>> {
 }
 
 export async function loadPowerWatchData(): Promise<PowerWatchData> {
-  const [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline] = await Promise.all([
+  const [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline, anomalies] = await Promise.all([
     loadSampleSummary().then(
       (value): JsonResult<SampleSummary> => ({ value, error: null }),
       (error): JsonResult<SampleSummary> => ({ value: null, error: `sample-summary.json: ${String(error)}` }),
@@ -229,6 +289,7 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     fetchJson<OverviewV1>("data/v1/overview.json"),
     fetchJson<RegionalV1>("data/v1/regional.json"),
     fetchJson<CoastlineV1>("data/geo/nz-coastline.json"),
+    fetchJson<AnomaliesV1>("data/v1/anomalies.json"),
   ]);
 
   return {
@@ -240,7 +301,8 @@ export async function loadPowerWatchData(): Promise<PowerWatchData> {
     overview: overview.value,
     regional: regional.value,
     coastline: coastline.value,
-    errors: [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline]
+    anomalies: anomalies.value,
+    errors: [sample, manifest, coverage, quality, priceSummary, overview, regional, coastline, anomalies]
       .map((result) => result.error)
       .filter((error): error is string => error !== null),
   };

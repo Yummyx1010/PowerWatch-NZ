@@ -267,6 +267,14 @@ export function OverviewPage({ navigate }: { navigate: (route: RouteId) => void 
               <li><span>Known gap</span><strong>{formatCount(data.manifest?.coverage.gapDays)} days</strong></li>
             </ul>
           </Panel>
+          <Panel title="Anomaly signal" note="Market-wide flags from the full node universe.">
+            <ul className="data-list">
+              <li><span>Statistical flags</span><strong>{formatCount(data.anomalies?.summary.statisticalCount)}</strong></li>
+              <li><span>Negative-price events</span><strong>{formatCount(data.anomalies?.summary.marketEventCount)}<small>Market events, not automatic anomalies</small></strong></li>
+              <li><span>High / critical</span><strong>{formatCount((data.anomalies?.summary.byTier.high ?? 0) + (data.anomalies?.summary.byTier.critical ?? 0))}</strong></li>
+              <li><span>Simultaneous clusters</span><strong>{formatCount(data.anomalies?.summary.simultaneousClusters)}</strong></li>
+            </ul>
+          </Panel>
         </section>
       </div>
     </div>

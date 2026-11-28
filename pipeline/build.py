@@ -9,6 +9,7 @@ from pathlib import Path
 import pandas as pd
 
 from .clean import clean_source
+from .anomalies import write_anomaly_payload
 from .config import NSP_TABLE_BLOB, UNIQUE_REPRESENTATIVE_NODES
 from .download import fetch_file
 from .history import coverage_summary, load_manifest, mark_processed, spec_from_entry, write_json
@@ -180,6 +181,11 @@ def build_history(
         Path(processed_dir),
         mapping_path,
         Path(public_dir) / "regional.json",
+    )
+    write_anomaly_payload(
+        Path(processed_dir),
+        mapping_path,
+        Path(public_dir) / "anomalies.json",
     )
 
     return {

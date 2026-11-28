@@ -3,6 +3,11 @@ export function formatNzd(value: number | null | undefined): string {
   return `$${value.toFixed(2)}`;
 }
 
+export function formatNzdPerMwh(value: number | null | undefined): string {
+  if (value === null || value === undefined || !Number.isFinite(value)) return "—";
+  return `NZ$${value.toFixed(2)}/MWh`;
+}
+
 export function formatCount(value: number | null | undefined): string {
   if (value === null || value === undefined || !Number.isFinite(value)) return "—";
   return new Intl.NumberFormat("en-NZ").format(value);

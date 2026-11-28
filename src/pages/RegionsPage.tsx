@@ -92,6 +92,9 @@ export function RegionsPage() {
     .filter((node) => node.volatility7d !== null)
     .sort((a, b) => (b.volatility7d ?? 0) - (a.volatility7d ?? 0))
     .slice(0, 5);
+  const selectedAnomalies = (data.anomalies?.events ?? [])
+    .filter((event) => selectedCodes.includes(event.node))
+    .sort((a, b) => b.peakDate.localeCompare(a.peakDate) || b.severity - a.severity);
   const islandStats = (code: "NI" | "SI") => {
     const values = filteredNodes
       .filter((node) => node.island === code && node.latest !== null)
@@ -353,6 +356,26 @@ export function RegionsPage() {
               <li><strong>Unmapped nodes</strong><span>Nodes without verified coordinates stay in the explorer and ranking but are not plotted.</span></li>
               <li><strong>Status preserved</strong><span>Interim dates remain labelled; negative values and gaps are not removed.</span></li>
               {freshness === "stale" ? <li><strong>Stale snapshot</strong><span>Check Data & Methodology for the data version.</span></li> : null}
+            </ul>
+          </Panel>
+          <Panel title="Anomaly signal" note="Detected events for the currently selected nodes.">
+            <ul className="data-list">
+              <li><span>Selected-node events</span><strong>{formatCount(selectedAnomalies.length)}</strong></li>
+              <li>
+                <span>Latest flag</span>
+                <strong>
+                  {selectedAnomalies[0] ? formatShortDate(selectedAnomalies[0].peakDate) : "—"}
+                  <small>{selectedAnomalies[0]?.label ?? "No selected-node events"}</small>
+                </strong>
+              </li>
+              <li>
+                <span>Highest severity</span>
+                <strong>
+                  {selectedAnomalies.length ? Math.max(...selectedAnomalies.map((event) => event.severity)) : "—"}
+                  <small>0–100 scale</small>
+                </strong>
+              </li>
+              <li><span>Market-wide flags</span><strong>{formatCount(data.anomalies?.summary.statisticalCount)}</strong></li>
             </ul>
           </Panel>
         </section>

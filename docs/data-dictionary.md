@@ -57,6 +57,14 @@ Raw files remain untouched in `data/raw/`; standardised records live in
   they use clearly labelled same-substation coordinate proxies (`OTA0221`, `HAY0331`, `ISL0331`)
   with `coordinateSource = official_nsp_substation_proxy`. Nodes without verified coordinates remain
   in the dataset with `hasMapPosition = false` and are never given invented positions.
+- `public/data/v1/anomalies.json` (M5): compact event records with type, classification, node,
+  region, island, start/end/peak date, duration, severity/tier, Final/Interim status, explanation
+  reasons, and statistics (local/seasonal/cross-node z-scores, medians, volatility ratio). Also
+  includes thresholds, methods, summary counts, simultaneous clusters and recurring patterns.
+  Clusters carry statistical/market-event counts, a `classification` label (`statistical`,
+  `market_event_only` or `mixed`), a `dominantType`, and event IDs capped at 40 entries. The
+  frontend draws event price context from the existing full-history `regional.json` series; no
+  duplicate price arrays are added to this payload.
 - `public/data/geo/nz-coastline.json`: simplified Natural Earth 110m New Zealand coastline
   (public domain), used as the geographically accurate base map for the interactive Regions map.
 - `public/data/v1/overview.json` (M3): recent half-hour rows for the three representative nodes
